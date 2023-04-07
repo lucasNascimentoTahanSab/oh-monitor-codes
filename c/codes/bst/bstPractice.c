@@ -1,15 +1,15 @@
 typedef struct node
 {
-  int dado;
-  struct node *esq;
-  struct node *dir;
-  struct node *pai;
+    int dado;
+    struct node *esq;
+    struct node *dir;
+    struct node *pai;
 } Node;
 
 #include <stdio.h>
 
 int main(int argc, char const *argv[])
 {
-  /* code */
-  return 0;
+    /* code */
+    return 0;
 }
