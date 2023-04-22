@@ -37,7 +37,6 @@ class BST {
         else {
             // node contains only one child
             if (root.left == null) {
-                System.out.print("\n");
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
                 System.out.print(" ");
                 System.out.print(System.identityHashCode(root));
@@ -49,7 +48,6 @@ class BST {
 
                 return root.right;
             } else if (root.right == null) {
-                System.out.print("\n");
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
                 System.out.print(" ");
                 System.out.print(System.identityHashCode(root));
@@ -66,7 +64,6 @@ class BST {
             // get inorder successor (min value in the right subtree)
             root.key = minValue(root.right);
 
-            System.out.print("\n");
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
             System.out.print(" ");
             System.out.print(System.identityHashCode(root));
@@ -104,7 +101,6 @@ class BST {
         if (root == null) {
             root = new Node(key);
 
-            System.out.print("\n");
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
             System.out.print(" ");
             System.out.print(System.identityHashCode(root));
@@ -128,6 +124,8 @@ class BST {
     // method for inorder traversal of BST
     void inorder() {
         inorder_Recursive(root);
+
+        System.out.println();
     }
 
     // recursively traverse the BST
