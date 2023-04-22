@@ -72,6 +72,9 @@ class BST {
         // tree is empty
         if (root == null) {
             root = new Node(key);
+
+            System.out.printf("35a7bfa2-e0aa-11ed-b5ea-0242ac120002 %p %d insert\n", new Object[] { root, root.key });
+
             return root;
         }
         // traverse the tree
