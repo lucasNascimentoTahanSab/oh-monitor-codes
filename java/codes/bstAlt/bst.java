@@ -36,14 +36,39 @@ class BST {
             root.right = delete_Recursive(root.right, key);
         else {
             // node contains only one child
-            if (root.left == null)
+            if (root.left == null) {
+                System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+                System.out.print(System.identityHashCode(root));
+                System.out.print(" ");
+                System.out.print(root.key);
+                System.out.print(" ");
+                System.out.print("delete");
+                System.out.print("\n");
+
                 return root.right;
-            else if (root.right == null)
+            } else if (root.right == null) {
+                System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+                System.out.print(System.identityHashCode(root));
+                System.out.print(" ");
+                System.out.print(root.key);
+                System.out.print(" ");
+                System.out.print("delete");
+                System.out.print("\n");
+
                 return root.left;
+            }
 
             // node has two children;
             // get inorder successor (min value in the right subtree)
             root.key = minValue(root.right);
+
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print(System.identityHashCode(root));
+            System.out.print(" ");
+            System.out.print(root.key);
+            System.out.print(" ");
+            System.out.print("update");
+            System.out.print("\n");
 
             // Delete the inorder successor
             root.right = delete_Recursive(root.right, root.key);
@@ -73,8 +98,13 @@ class BST {
         if (root == null) {
             root = new Node(key);
 
-            System.out.printf("35a7bfa2-e0aa-11ed-b5ea-0242ac120002 %d %d insert\n",
-                    new Object[] { System.identityHashCode(root), root.key });
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print(System.identityHashCode(root));
+            System.out.print(" ");
+            System.out.print(root.key);
+            System.out.print(" ");
+            System.out.print("insert");
+            System.out.print("\n");
 
             return root;
         }
