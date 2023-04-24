@@ -16,6 +16,9 @@ class BST {
     // Constructor for BST =>initial empty tree
     BST() {
         root = null;
+
+        System.out.print("{ \"operation\": \"initialize\" }");
+        System.out.print("\n");
     }
 
     // delete a node from BST
@@ -39,22 +42,26 @@ class BST {
             if (root.left == null) {
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
                 System.out.print(" ");
-                System.out.print(System.identityHashCode(root));
-                System.out.print(" ");
-                System.out.print(root.key);
-                System.out.print(" ");
-                System.out.print("delete");
+                System.out.print(
+                    "{ " +
+                        "\"address\": " + System.identityHashCode(root) + ", " +
+                        "\"switch\": " + System.identityHashCode(root.right) + ", " +
+                        "\"operation\": \"delete\" " + 
+                    "}"
+                );
                 System.out.print("\n");
 
                 return root.right;
             } else if (root.right == null) {
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
                 System.out.print(" ");
-                System.out.print(System.identityHashCode(root));
-                System.out.print(" ");
-                System.out.print(root.key);
-                System.out.print(" ");
-                System.out.print("delete");
+                System.out.print(
+                    "{ " +
+                        "\"address\": " + System.identityHashCode(root) + ", " +
+                        "\"switch\": " + System.identityHashCode(root.left) + ", " +
+                        "\"operation\": \"delete\" " + 
+                    "}"
+                );
                 System.out.print("\n");
 
                 return root.left;
@@ -66,11 +73,13 @@ class BST {
 
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
             System.out.print(" ");
-            System.out.print(System.identityHashCode(root));
-            System.out.print(" ");
-            System.out.print(root.key);
-            System.out.print(" ");
-            System.out.print("update");
+            System.out.print(
+                "{ " +
+                    "\"address\": " + System.identityHashCode(root) + ", " +
+                    "\"value\": " + root.key + ", " +
+                    "\"operation\": \"update\" " + 
+                "}"
+            );
             System.out.print("\n");
 
             // Delete the inorder successor
@@ -100,14 +109,16 @@ class BST {
         // tree is empty
         if (root == null) {
             root = new Node(key);
-
+            
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
             System.out.print(" ");
-            System.out.print(System.identityHashCode(root));
-            System.out.print(" ");
-            System.out.print(root.key);
-            System.out.print(" ");
-            System.out.print("insert");
+            System.out.print(
+                "{ " +
+                    "\"address\": " + System.identityHashCode(root) + ", " +
+                    "\"value\": " + root.key + ", " +
+                    "\"operation\": \"insert\" " + 
+                "}"
+            );
             System.out.print("\n");
 
             return root;
