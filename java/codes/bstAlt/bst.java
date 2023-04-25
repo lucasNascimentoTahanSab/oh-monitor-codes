@@ -17,6 +17,8 @@ class BST {
     BST() {
         root = null;
 
+        System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+        System.out.print("/");
         System.out.print("{ \"operation\": \"initialize\" }");
         System.out.print("\n");
     }
@@ -41,7 +43,7 @@ class BST {
             // node contains only one child
             if (root.left == null) {
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
-                System.out.print(" ");
+                System.out.print("/");
                 System.out.print(
                     "{ " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
@@ -54,7 +56,7 @@ class BST {
                 return root.right;
             } else if (root.right == null) {
                 System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
-                System.out.print(" ");
+                System.out.print("/");
                 System.out.print(
                     "{ " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
@@ -72,7 +74,7 @@ class BST {
             root.key = minValue(root.right);
 
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
-            System.out.print(" ");
+            System.out.print("/");
             System.out.print(
                 "{ " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
@@ -111,7 +113,7 @@ class BST {
             root = new Node(key);
             
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
-            System.out.print(" ");
+            System.out.print("/");
             System.out.print(
                 "{ " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
