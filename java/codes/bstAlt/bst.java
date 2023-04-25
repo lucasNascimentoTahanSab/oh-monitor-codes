@@ -19,7 +19,12 @@ class BST {
 
         System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
         System.out.print("/");
-        System.out.print("{ \"operation\": \"initialize\" }");
+        System.out.print(
+            "{ " + 
+                "\"address\": " + System.identityHashCode(this) + ", " +
+                "\"operation\": \"initialize\" " + 
+            "}"
+        );
         System.out.print("\n");
     }
 
