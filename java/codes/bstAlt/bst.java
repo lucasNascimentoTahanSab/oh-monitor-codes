@@ -30,20 +30,20 @@ class BST {
 
     // delete a node from BST
     void deleteKey(int key) {
-        root = delete_Recursive(root, key);
+        root = delete_Recursive(root, root, key);
     }
 
     // recursive delete function
-    Node delete_Recursive(Node root, int key) {
+    Node delete_Recursive(Node parent, Node root, int key) {
         // tree is empty
         if (root == null)
             return root;
 
         // traverse the tree
         if (key < root.key) // traverse left subtree
-            root.left = delete_Recursive(root.left, key);
+            root.left = delete_Recursive(root, root.left, key);
         else if (key > root.key) // traverse right subtree
-            root.right = delete_Recursive(root.right, key);
+            root.right = delete_Recursive(root, root.right, key);
         else {
             // node contains only one child
             if (root.left == null) {
@@ -52,6 +52,7 @@ class BST {
                 System.out.print(
                     "{ " +
                         "\"structure\": " + System.identityHashCode(this) + ", " +
+                        "\"parent\": " + System.identityHashCode(parent) + ", " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
                         "\"switch\": " + System.identityHashCode(root.right) + ", " +
                         "\"operation\": \"delete\" " + 
@@ -66,6 +67,7 @@ class BST {
                 System.out.print(
                     "{ " +
                         "\"structure\": " + System.identityHashCode(this) + ", " +
+                        "\"parent\": " + System.identityHashCode(parent) + ", " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
                         "\"switch\": " + System.identityHashCode(root.left) + ", " +
                         "\"operation\": \"delete\" " + 
@@ -85,6 +87,7 @@ class BST {
             System.out.print(
                 "{ " +
                     "\"structure\": " + System.identityHashCode(this) + ", " +
+                    "\"parent\": " + System.identityHashCode(parent) + ", " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
                     "\"value\": " + root.key + ", " +
                     "\"operation\": \"update\" " + 
@@ -93,7 +96,7 @@ class BST {
             System.out.print("\n");
 
             // Delete the inorder successor
-            root.right = delete_Recursive(root.right, root.key);
+            root.right = delete_Recursive(root, root.right, root.key);
         }
         return root;
     }
@@ -111,11 +114,11 @@ class BST {
 
     // insert a node in BST
     void insert(int key) {
-        root = insert_Recursive(root, key);
+        root = insert_Recursive(root, root, key, "");
     }
 
     // recursive insert function
-    Node insert_Recursive(Node root, int key) {
+    Node insert_Recursive(Node parent, Node root, int key, String direction) {
         // tree is empty
         if (root == null) {
             root = new Node(key);
@@ -125,8 +128,10 @@ class BST {
             System.out.print(
                 "{ " +
                     "\"structure\": " + System.identityHashCode(this) + ", " +
+                    "\"parent\": " + System.identityHashCode(parent) + ", " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
                     "\"value\": " + root.key + ", " +
+                    "\"direction\": " + direction + ", " +
                     "\"operation\": \"insert\" " + 
                 "}"
             );
@@ -136,9 +141,9 @@ class BST {
         }
         // traverse the tree
         if (key < root.key) // insert in the left subtree
-            root.left = insert_Recursive(root.left, key);
+            root.left = insert_Recursive(root, root.left, key, "left");
         else if (key > root.key) // insert in the right subtree
-            root.right = insert_Recursive(root.right, key);
+            root.right = insert_Recursive(root, root.right, key, "right");
         // return pointer
         return root;
     }
