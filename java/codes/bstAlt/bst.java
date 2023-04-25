@@ -51,6 +51,7 @@ class BST {
                 System.out.print("/");
                 System.out.print(
                     "{ " +
+                        "\"structure\": " + System.identityHashCode(this) + ", " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
                         "\"switch\": " + System.identityHashCode(root.right) + ", " +
                         "\"operation\": \"delete\" " + 
@@ -64,6 +65,7 @@ class BST {
                 System.out.print("/");
                 System.out.print(
                     "{ " +
+                        "\"structure\": " + System.identityHashCode(this) + ", " +
                         "\"address\": " + System.identityHashCode(root) + ", " +
                         "\"switch\": " + System.identityHashCode(root.left) + ", " +
                         "\"operation\": \"delete\" " + 
@@ -82,6 +84,7 @@ class BST {
             System.out.print("/");
             System.out.print(
                 "{ " +
+                    "\"structure\": " + System.identityHashCode(this) + ", " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
                     "\"value\": " + root.key + ", " +
                     "\"operation\": \"update\" " + 
@@ -121,6 +124,7 @@ class BST {
             System.out.print("/");
             System.out.print(
                 "{ " +
+                    "\"structure\": " + System.identityHashCode(this) + ", " +
                     "\"address\": " + System.identityHashCode(root) + ", " +
                     "\"value\": " + root.key + ", " +
                     "\"operation\": \"insert\" " + 
