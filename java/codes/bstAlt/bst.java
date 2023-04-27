@@ -114,7 +114,7 @@ class BST {
 
     // insert a node in BST
     void insert(int key) {
-        root = insert_Recursive(root, root, key, "");
+        root = insert_Recursive(root, root, key, null);
     }
 
     // recursive insert function
