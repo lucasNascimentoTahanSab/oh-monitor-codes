@@ -20,11 +20,10 @@ class BST {
         System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
         System.out.print("/");
         System.out.print(
-            "{ " + 
-                "\"address\": " + System.identityHashCode(this) + ", " +
-                "\"operation\": \"initialize\" " + 
-            "}"
-        );
+                "{ " +
+                        "\"address\": \"" + System.identityHashCode(this) + "\", " +
+                        "\"operation\": \"initialize\" " +
+                        "}");
         System.out.print("\n");
     }
 
@@ -51,10 +50,10 @@ class BST {
                 System.out.print("/");
                 System.out.print(
                     "{ " +
-                        "\"structure\": " + System.identityHashCode(this) + ", " +
-                        "\"parent\": " + System.identityHashCode(parent) + ", " +
-                        "\"address\": " + System.identityHashCode(root) + ", " +
-                        "\"switch\": " + System.identityHashCode(root.right) + ", " +
+                        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                        "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
+                        "\"address\": \"" + System.identityHashCode(root) + "\", " +
+                        "\"switch\": \"" + System.identityHashCode(root.right) + "\", " +
                         "\"operation\": \"delete\" " + 
                     "}"
                 );
@@ -66,10 +65,10 @@ class BST {
                 System.out.print("/");
                 System.out.print(
                     "{ " +
-                        "\"structure\": " + System.identityHashCode(this) + ", " +
-                        "\"parent\": " + System.identityHashCode(parent) + ", " +
-                        "\"address\": " + System.identityHashCode(root) + ", " +
-                        "\"switch\": " + System.identityHashCode(root.left) + ", " +
+                        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                        "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
+                        "\"address\": \"" + System.identityHashCode(root) + "\", " +
+                        "\"switch\": \"" + System.identityHashCode(root.left) + "\" " +
                         "\"operation\": \"delete\" " + 
                     "}"
                 );
@@ -86,9 +85,9 @@ class BST {
             System.out.print("/");
             System.out.print(
                 "{ " +
-                    "\"structure\": " + System.identityHashCode(this) + ", " +
-                    "\"parent\": " + System.identityHashCode(parent) + ", " +
-                    "\"address\": " + System.identityHashCode(root) + ", " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
+                    "\"address\": \"" + System.identityHashCode(root) + "\", " +
                     "\"value\": " + root.key + ", " +
                     "\"operation\": \"update\" " + 
                 "}"
@@ -122,17 +121,17 @@ class BST {
         // tree is empty
         if (root == null) {
             root = new Node(key);
-            
+
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
             System.out.print("/");
             System.out.print(
                 "{ " +
-                    "\"structure\": " + System.identityHashCode(this) + ", " +
-                    "\"parent\": " + System.identityHashCode(parent) + ", " +
-                    "\"address\": " + System.identityHashCode(root) + ", " +
-                    "\"value\": " + root.key + ", " +
-                    "\"direction\": " + direction + ", " +
-                    "\"operation\": \"insert\" " + 
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
+                    "\"address\": \"" + System.identityHashCode(root) + "\", " +
+                    "\"value\": \"" + root.key + "\", " +
+                    "\"direction\": \"" + direction + "\", " +
+                    "\"operation\": \"insert\" " +
                 "}"
             );
             System.out.print("\n");
