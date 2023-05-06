@@ -130,7 +130,7 @@ class BST {
                     "\"structure\": \"" + System.identityHashCode(this) + "\", " +
                     "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
                     "\"address\": \"" + System.identityHashCode(root) + "\", " +
-                    "\"value\": \"" + root.key + "\", " +
+                    "\"value\": " + root.key + ", " +
                     "\"operation\": \"insert\" " +
                 "}"
             );
