@@ -20,10 +20,11 @@ class BST {
         System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
         System.out.print("/");
         System.out.print(
-                "{ " +
-                        "\"address\": \"" + System.identityHashCode(this) + "\", " +
-                        "\"operation\": \"initialize\" " +
-                        "}");
+            "{ " +
+                "\"address\": \"" + System.identityHashCode(this) + "\", " +
+                "\"operation\": \"initialize\" " +
+            "}"
+        );
         System.out.print("\n");
     }
 
@@ -130,7 +131,6 @@ class BST {
                     "\"parent\": \"" + System.identityHashCode(parent) + "\", " +
                     "\"address\": \"" + System.identityHashCode(root) + "\", " +
                     "\"value\": \"" + root.key + "\", " +
-                    "\"direction\": \"" + direction + "\", " +
                     "\"operation\": \"insert\" " +
                 "}"
             );
