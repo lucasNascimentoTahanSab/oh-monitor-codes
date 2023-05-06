@@ -119,6 +119,18 @@ class BST {
 
     // recursive insert function
     Node insert_Recursive(Node parent, Node root, int key, String direction) {
+        System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+        System.out.print("/");
+        System.out.print(
+            "{ " +
+                "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                "\"origin\": \"" + System.identityHashCode(parent) + "\", " +
+                "\"destiny\": \"" + System.identityHashCode(root) + "\", " +
+                "\"operation\": \"walk\" " +
+            "}"
+        );
+        System.out.print("\n");
+
         // tree is empty
         if (root == null) {
             root = new Node(key);
@@ -138,11 +150,39 @@ class BST {
 
             return root;
         }
+
         // traverse the tree
-        if (key < root.key) // insert in the left subtree
+        if (key < root.key) { // insert in the left subtree
             root.left = insert_Recursive(root, root.left, key, "left");
-        else if (key > root.key) // insert in the right subtree
+
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print("/");
+            System.out.print(
+                "{ " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"origin\": \"" + System.identityHashCode(root.left) + "\", " +
+                    "\"destiny\": \"" + System.identityHashCode(root) + "\", " +
+                    "\"operation\": \"walk\" " +
+                "}"
+            );
+            System.out.print("\n");
+        }
+        else if (key > root.key) { // insert in the right subtree
             root.right = insert_Recursive(root, root.right, key, "right");
+
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print("/");
+            System.out.print(
+                "{ " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"origin\": \"" + System.identityHashCode(root.right) + "\", " +
+                    "\"destiny\": \"" + System.identityHashCode(root) + "\", " +
+                    "\"operation\": \"walk\" " +
+                "}"
+            );
+            System.out.print("\n");
+        }
+
         // return pointer
         return root;
     }
