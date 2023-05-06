@@ -144,7 +144,7 @@ class BST {
         System.out.print(
             "{ " +
                 "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-                "\"origin\": \"" + parent != null ? parent.key : null + "\", " +
+                "\"origin\": \"" + (parent != null ? parent.key : null) + "\", " +
                 "\"destiny\": \"" + root.key + "\", " +
                 "\"operation\": \"walk\" " +
             "}"
@@ -165,7 +165,7 @@ class BST {
             "{ " +
                 "\"structure\": \"" + System.identityHashCode(this) + "\", " +
                 "\"origin\": \"" + root.key + "\", " +
-                "\"destiny\": \"" + parent != null ? parent.key : null + "\", " +
+                "\"destiny\": \"" + (parent != null ? parent.key : null) + "\", " +
                 "\"operation\": \"walk\" " +
             "}"
         );
