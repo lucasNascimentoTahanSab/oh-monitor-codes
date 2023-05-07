@@ -105,7 +105,7 @@ class BST {
     Node insert_Recursive(Node parent, Node root, int key) {
         // tree is empty
         if (root == null) {
-            walk(parent, null);
+            if(parent != null) { walk(parent, null); }
 
             root = new Node(key);
 
