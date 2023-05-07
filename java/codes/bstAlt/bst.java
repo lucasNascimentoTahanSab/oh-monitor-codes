@@ -114,13 +114,37 @@ class BST {
 
     // insert a node in BST
     void insert(int key) {
-        root = insert_Recursive(root, root, key);
+        root = insert_Recursive(null, root, key);
+
+        System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+        System.out.print("/");
+        System.out.print(
+            "{ " +
+                "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                "\"origin\": " + root.key + ", " +
+                "\"destiny\": " + null + ", " +
+                "\"operation\": \"walk\" " +
+            "}"
+        );
+        System.out.print("\n");
     }
 
     // recursive insert function
     Node insert_Recursive(Node parent, Node root, int key) {
         // tree is empty
         if (root == null) {
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print("/");
+            System.out.print(
+                "{ " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"origin\": " + (parent != null ? parent.key : null) + ", " +
+                    "\"destiny\": " + null + ", " +
+                    "\"operation\": \"walk\" " +
+                "}"
+            );
+            System.out.print("\n");
+
             root = new Node(key);
 
             System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
@@ -144,8 +168,8 @@ class BST {
         System.out.print(
             "{ " +
                 "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-                "\"origin\": \"" + (parent != null ? parent.key : null) + "\", " +
-                "\"destiny\": \"" + root.key + "\", " +
+                "\"origin\": " + (parent != null ? parent.key : null) + ", " +
+                "\"destiny\": " + root.key + ", " +
                 "\"operation\": \"walk\" " +
             "}"
         );
@@ -154,22 +178,34 @@ class BST {
         // traverse the tree
         if (key < root.key) { // insert in the left subtree
             root.left = insert_Recursive(root, root.left, key);
+
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print("/");
+            System.out.print(
+                "{ " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"origin\": " + root.left.key + ", " +
+                    "\"destiny\": " + root.key + ", " +
+                    "\"operation\": \"walk\" " +
+                "}"
+            );
+            System.out.print("\n");
         }
         else if (key > root.key) { // insert in the right subtree
             root.right = insert_Recursive(root, root.right, key);
-        }
 
-        System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
-        System.out.print("/");
-        System.out.print(
-            "{ " +
-                "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-                "\"origin\": \"" + root.key + "\", " +
-                "\"destiny\": \"" + (parent != null ? parent.key : null) + "\", " +
-                "\"operation\": \"walk\" " +
-            "}"
-        );
-        System.out.print("\n");
+            System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+            System.out.print("/");
+            System.out.print(
+                "{ " +
+                    "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+                    "\"origin\": " + root.right.key + ", " +
+                    "\"destiny\": " + root.key + ", " +
+                    "\"operation\": \"walk\" " +
+                "}"
+            );
+            System.out.print("\n");
+        }
 
         // return pointer
         return root;
