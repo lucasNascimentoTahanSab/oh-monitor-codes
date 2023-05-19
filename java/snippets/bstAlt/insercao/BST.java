@@ -64,7 +64,7 @@ public class BST {
   }
 
   void insert(Node node) {
-    System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+    System.out.print("subject");
     System.out.print("/");
     System.out.print(
       "{ " +
@@ -78,7 +78,7 @@ public class BST {
 }
 
   void walk(Node origin, Node destiny) {
-    System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+    System.out.print("subject");
     System.out.print("/");
     System.out.print(
       "{ " +
