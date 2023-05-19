@@ -37,7 +37,7 @@ public class BST {
       this.inserirNaRaiz(chave);
     } else if (chave < pai.chave) {
       this.inserirAEsquerda(chave, pai);
-    } else {
+    } else if (chave > pai.chave) {
       this.inserirADireita(chave, pai);
     }
   }

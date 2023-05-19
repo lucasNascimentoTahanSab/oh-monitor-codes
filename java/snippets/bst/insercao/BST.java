@@ -17,7 +17,7 @@ public class BST {
 
   /**
    * Método responsável pela inserção de uma nova chave em
-   * árvore binária de busca.
+   * árvore binária de busca a partir da raiz.
    */
   public void inserir(Integer chave) {
     Node pai = null;
@@ -34,41 +34,11 @@ public class BST {
     }
 
     if (pai == null) {
-      this.inserirNaRaiz(chave);
+      this.raiz = new Node(chave);
     } else if (chave < pai.chave) {
-      this.inserirAEsquerda(chave, pai);
+      pai.direita = new Node(chave);
     } else {
-      this.inserirADireita(chave, pai);
+      pai.esquerda = new Node(chave);
     }
-  }
-
-  /**
-   * Método responsável pela inserção de uma nova chave à
-   * direita do nó recebido.
-   */
-  private Node inserirADireita(Integer chave, Node no) {
-    no.direita = new Node(chave);
-
-    return no.direita;
-  }
-
-  /**
-   * Método responsável pela inserção de uma nova chave à
-   * esquerda do nó recebido.
-   */
-  private Node inserirAEsquerda(Integer chave, Node no) {
-    no.esquerda = new Node(chave);
-
-    return no.esquerda;
-  }
-
-  /**
-   * Método responsável pela inserção de uma nova chave na
-   * raiz da árvore.
-   */
-  private Node inserirNaRaiz(Integer chave) {
-    raiz = new Node(chave);
-
-    return raiz;
   }
 }
