@@ -1,5 +1,3 @@
-package insercaoRecursiva;
-
 public class BST {
   public class Node {
     private Integer chave;
