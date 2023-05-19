@@ -43,6 +43,8 @@ public class BST {
   }
 
   private void inserirADireita(Integer chave, Node no) {
+    this.walk(no, null);
+
     no.direita = new Node(chave);
     
     this.insert(no.direita);
@@ -50,6 +52,8 @@ public class BST {
   }
 
   private void inserirAEsquerda(Integer chave, Node no) {
+    this.walk(no, null);
+
     no.esquerda = new Node(chave);
     
     this.insert(no.esquerda);
