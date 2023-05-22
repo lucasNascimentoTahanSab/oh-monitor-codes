@@ -97,14 +97,14 @@ public class BST {
     }
 
     if (no.esquerda == null) {
-      walk(no, no.direita);
+      if(no.direita != null) { walk(no, no.direita); }
 
       this.transplantar(no, no.direita);
 
       walk(no.direita, null);
       delete(no);
     } else if (no.direita == null) {
-      walk(no, no.esquerda);
+      if(no.direita != null) { walk(no, no.esquerda); }
 
       this.transplantar(no, no.esquerda);
 
@@ -128,11 +128,9 @@ public class BST {
         substituto.direita.pai = substituto;
       }
 
-      walk(substituto, no);
-
       this.transplantar(no, substituto);
-
-      walk(no, substituto);
+      
+      walk(substituto, no);
       update(no, substituto.chave);
       delete(substituto);
 
