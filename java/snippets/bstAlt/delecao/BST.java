@@ -80,8 +80,12 @@ public class BST {
       walk(no.pai, no);
 
       if (chave < no.chave) {
+        walk(no, no.esquerda);
+
         no = no.esquerda;
       } else if (chave > no.chave) {
+        walk(no, no.direita);
+
         no = no.direita;
       }
     }
