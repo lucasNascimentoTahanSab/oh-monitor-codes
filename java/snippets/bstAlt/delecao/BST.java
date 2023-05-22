@@ -138,7 +138,7 @@ public class BST {
       substituto.esquerda.pai = substituto;
     }
 
-    walk(no, null);
+    if (no != null) { walk(no, null); }
   }
 
   public Node minimo(Node no) {
