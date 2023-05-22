@@ -123,11 +123,11 @@ public class BST {
         substituto.direita = no.direita;
         substituto.direita.pai = substituto;
       }
-      
+
       walk(substituto, no);
 
       this.transplantar(no, substituto);
-      
+
       walk(no, substituto);
       update(no, substituto.chave);
       delete(substituto);
@@ -162,29 +162,31 @@ public class BST {
   }
 
   private void update(Node no, int novoValor) {
-    System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+    System.out.print("subject");
     System.out.print("/");
     System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"address\": \"" + System.identityHashCode(no) + "\", " +
-            "\"old\": " + no.chave + ", " +
-            "\"new\": " + novoValor + ", " +
-            "\"operation\": \"update\" " +
-            "}");
+      "{ " +
+        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+        "\"address\": \"" + System.identityHashCode(no) + "\", " +
+        "\"old\": " + no.chave + ", " +
+        "\"new\": " + novoValor + ", " +
+        "\"operation\": \"update\" " +
+      "}"
+    );
     System.out.print("\n");
   }
 
   private void delete(Node no) {
-    System.out.print("35a7bfa2-e0aa-11ed-b5ea-0242ac120002");
+    System.out.print("subject");
     System.out.print("/");
     System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
-            "\"value\": " + (no != null ? no.chave : null) + ", " +
-            "\"operation\": \"delete\" " +
-            "}");
+      "{ " +
+        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+        "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+        "\"value\": " + (no != null ? no.chave : null) + ", " +
+        "\"operation\": \"delete\" " +
+      "}"
+    );
     System.out.print("\n");
   }
 
@@ -192,12 +194,13 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
-            "\"value\": " + (no != null ? no.chave : null) + ", " +
-            "\"operation\": \"insert\" " +
-            "}");
+      "{ " +
+        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+        "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+        "\"value\": " + (no != null ? no.chave : null) + ", " +
+        "\"operation\": \"insert\" " +
+      "}"
+    );
     System.out.print("\n");
   }
 
@@ -205,12 +208,13 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
-            "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
-            "\"operation\": \"walk\" " +
-            "}");
+      "{ " +
+        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+        "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
+        "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
+        "\"operation\": \"walk\" " +
+      "}"
+    );
     System.out.print("\n");
   }
 
@@ -218,10 +222,11 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-        "{ " +
-            "\"address\": \"" + System.identityHashCode(this) + "\", " +
-            "\"operation\": \"initialize\" " +
-            "}");
+      "{ " +
+        "\"address\": \"" + System.identityHashCode(this) + "\", " +
+        "\"operation\": \"initialize\" " +
+      "}"
+    );
     System.out.print("\n");
   }
 }
