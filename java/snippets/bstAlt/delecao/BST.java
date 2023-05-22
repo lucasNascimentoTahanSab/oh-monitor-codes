@@ -91,24 +91,24 @@ public class BST {
     }
 
     if (no == null) {
-      walk(no, null);
-
       return;
     }
 
     if (no.esquerda == null) {
-      if(no.direita != null) { walk(no, no.direita); }
+      if (no.direita != null) { walk(no, no.direita); }
 
       this.transplantar(no, no.direita);
 
-      walk(no.direita, null);
+      if (no.direita != null) { walk(no.direita, null); }
+
       delete(no);
     } else if (no.direita == null) {
-      if(no.direita != null) { walk(no, no.esquerda); }
-
+      if (no.esquerda != null) { walk(no, no.esquerda); }
+      
       this.transplantar(no, no.esquerda);
 
-      walk(no.esquerda, null);
+      if (no.esquerda != null) { walk(no.esquerda, no); }
+
       delete(no);
     } else {
       walk(no, no.direita);
@@ -116,13 +116,15 @@ public class BST {
       Node substituto = this.minimo(no.direita);
 
       if (substituto.pai != no) {
-        walk(substituto, substituto.direita);
+        if (substituto.direita != null) { walk(substituto, substituto.direita); }
 
         this.transplantar(substituto, substituto.direita);
 
-        walk(substituto.direita, substituto);
-        update(substituto, substituto.direita.chave);
-        delete(substituto.direita);
+        if (substituto.direita != null) { 
+          walk(substituto.direita, substituto); 
+          update(substituto, substituto.direita.chave);
+          delete(substituto.direita);
+        }
 
         substituto.direita = no.direita;
         substituto.direita.pai = substituto;
