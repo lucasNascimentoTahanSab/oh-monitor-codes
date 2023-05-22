@@ -6,6 +6,8 @@ public class BST {
 
     private Node(Integer chave) {
       this.chave = chave;
+      this.esquerda = null;
+      this.direita = null;
     }
   }
 

@@ -3,9 +3,13 @@ public class BST {
     private Integer chave;
     private Node esquerda;
     private Node direita;
+    private Node pai;
 
     private Node(Integer chave) {
       this.chave = chave;
+      this.esquerda = null;
+      this.direita = null;
+      this.pai = null;
     }
   }
 
@@ -19,7 +23,7 @@ public class BST {
 
   public void inserir(Integer chave) {
     Node pai = null;
-    Node filho = raiz;
+    Node filho = this.raiz;
 
     while (filho != null) {
       walk(pai, filho);
@@ -46,7 +50,8 @@ public class BST {
     this.walk(no, null);
 
     no.direita = new Node(chave);
-    
+    no.direita.pai = no;
+
     this.insert(no.direita);
     this.walk(no.direita, null);
   }
@@ -55,14 +60,15 @@ public class BST {
     this.walk(no, null);
 
     no.esquerda = new Node(chave);
-    
+    no.esquerda.pai = no;
+
     this.insert(no.esquerda);
     this.walk(no.esquerda, null);
   }
 
   private void inserirNaRaiz(Integer chave) {
-    raiz = new Node(chave);
-    
+    this.raiz = new Node(chave);
+
     this.insert(this.raiz);
     this.walk(this.raiz, null);
   }
@@ -79,7 +85,7 @@ public class BST {
       "}"
     );
     System.out.print("\n");
-}
+  }
 
   void walk(Node origin, Node destiny) {
     System.out.print("subject");

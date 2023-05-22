@@ -3,9 +3,13 @@ public class BST {
     private Integer chave;
     private Node esquerda;
     private Node direita;
+    private Node pai;
 
     private Node(Integer chave) {
       this.chave = chave;
+      this.esquerda = null;
+      this.direita = null;
+      this.pai = null;
     }
   }
 
@@ -21,7 +25,7 @@ public class BST {
    */
   public void inserir(Integer chave) {
     Node pai = null;
-    Node filho = raiz;
+    Node filho = this.raiz;
 
     while (filho != null) {
       pai = filho;
@@ -33,12 +37,14 @@ public class BST {
       }
     }
 
-    if (pai == null) {
-      this.raiz = new Node(chave);
-    } else if (chave < pai.chave) {
-      pai.direita = new Node(chave);
-    } else {
-      pai.esquerda = new Node(chave);
+    if (pai == null) { // Quando o pai for nulo,
+      this.raiz = new Node(chave); // insira na raiz.
+    } else if (chave < pai.chave) { // Quando for menor que o pai,
+      pai.direita = new Node(chave); // insira à esquerda.
+      pai.direita.pai = pai;
+    } else if (chave > pai.chave) { // Quando for maior que o pai,
+      pai.esquerda = new Node(chave); // insira à esquerda.
+      pai.esquerda.pai = pai;
     }
   }
 }

@@ -6,6 +6,8 @@ public class BST {
 
     private Node(Integer chave) {
       this.chave = chave;
+      this.esquerda = null;
+      this.direita = null;
     }
   }
 
@@ -28,14 +30,14 @@ public class BST {
    * para a inserção de uma nova chave.
    */
   private Node inserir(Node no, Integer chave) {
-    if (no == null) {
-      return new Node(chave);
+    if (no == null) { // Quando nó nulo,
+      return new Node(chave); // insira.
     }
 
-    if (chave < no.chave) {
-      no.esquerda = inserir(no.esquerda, chave);
-    } else if (chave > no.chave) {
-      no.direita = inserir(no.direita, chave);
+    if (chave < no.chave) { // Quando menor que o nó atual,
+      no.esquerda = inserir(no.esquerda, chave); // insira à esquerda.
+    } else if (chave > no.chave) { // Quando maior que o nó atual,
+      no.direita = inserir(no.direita, chave); // insira à direita.
     }
 
     return no;
