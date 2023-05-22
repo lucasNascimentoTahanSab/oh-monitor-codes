@@ -97,14 +97,14 @@ public class BST {
 
       this.transplantar(no, no.direita);
 
-      walk(no.direita, no);
+      walk(no.direita, null);
       delete(no);
     } else if (no.direita == null) {
       walk(no, no.esquerda);
 
       this.transplantar(no, no.esquerda);
 
-      walk(no.esquerda, no);
+      walk(no.esquerda, null);
       delete(no);
     } else {
       walk(no, no.direita);
