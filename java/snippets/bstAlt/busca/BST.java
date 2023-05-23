@@ -9,6 +9,18 @@ public class BST {
       this.esquerda = null;
       this.direita = null;
     }
+
+    public void imprimirChave() {
+      System.out.println("subject-output/" + this.chave);
+    }
+
+    public Node obterNoEsquerda() {
+      return this.esquerda;
+    }
+
+    public Node obterNoDireita() {
+      return this.direita;
+    }
   }
 
   private Node raiz;
