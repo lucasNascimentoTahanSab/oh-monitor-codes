@@ -48,10 +48,6 @@ public class BST {
     }
   }
 
-  /**
-   * Método responsável pela deleção de um nó a partir da
-   * chave recebida.
-   */
   public void deletar(Integer chave) {
     Node no = this.raiz;
 
