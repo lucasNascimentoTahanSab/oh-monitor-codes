@@ -64,11 +64,7 @@ public class BST {
   }
 
   public Node buscar(Integer chave) {
-    Node noEncontrado = this.buscar(null, this.raiz, chave);
-
-    walk(noEncontrado, null);
-
-    return noEncontrado;
+    return this.buscar(null, this.raiz, chave);
   }
 
   private Node buscar(Node pai, Node no, Integer chave) {
