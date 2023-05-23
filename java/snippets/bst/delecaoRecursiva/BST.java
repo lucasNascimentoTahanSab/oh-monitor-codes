@@ -24,64 +24,66 @@ public class BST {
    * árvore binária de busca a partir da raiz.
    */
   public void inserir(Integer chave) {
-    Node pai = null;
-    Node filho = this.raiz;
-
-    while (filho != null) {
-      pai = filho;
-
-      if (chave < filho.chave) {
-        filho = filho.esquerda;
-      } else if (chave > filho.chave) {
-        filho = filho.direita;
-      }
-    }
-
-    if (pai == null) { // Quando o pai for nulo,
-      this.raiz = new Node(chave); // insira na raiz.
-    } else if (chave < pai.chave) { // Quando for menor que o pai,
-      pai.direita = new Node(chave); // insira à esquerda.
-      pai.direita.pai = pai;
-    } else if (chave > pai.chave) { // Quando for maior que o pai,
-      pai.esquerda = new Node(chave); // insira à esquerda.
-      pai.esquerda.pai = pai;
-    }
+    this.raiz = inserir(this.raiz, chave);
   }
 
+  /**
+   * Método responsável por caminhar recursivamente pela BST
+   * para a inserção de uma nova chave.
+   */
+  private Node inserir(Node no, Integer chave) {
+    if (no == null) { // Quando nó nulo,
+      return new Node(chave); // insira.
+    }
+
+    if (chave < no.chave) { // Quando menor que o nó atual,
+      no.esquerda = inserir(no.esquerda, chave); // insira à esquerda.
+    } else if (chave > no.chave) { // Quando maior que o nó atual,
+      no.direita = inserir(no.direita, chave); // insira à direita.
+    }
+
+    return no;
+  }
+
+  /**
+   * Método responsável pela deleção da chave recebida em
+   * árvore binária de busca a partir da raiz.
+   */
   public void deletar(Integer chave) {
-    Node no = this.raiz;
+    this.raiz = this.deletar(this.raiz, chave);
+  }
 
-    while (no != null && no.chave != chave) {
-      if (chave < no.chave) {
-        no = no.esquerda;
-      } else if (chave > no.chave) {
-        no = no.direita;
+  /**
+   * Método responsável por caminhar recursivamente pela BST
+   * para remoção da chave recebida.
+   */
+  public Node deletar(Node no, Integer chave) {
+    if (no == null) { // Quando chave não encontrada,
+      return no; // retorne.
+    }
+
+    if (chave < no.chave) { // Quando chave menor que a chave do nó atual,
+      no.esquerda = this.deletar(no.esquerda, chave); // caminhe para a esquerda.
+    } else if (chave > no.chave) { // Quando chave maior que a chave do nó atual,
+      no.direita = this.deletar(no.direita, chave); // caminhe para a direita.
+    } else { // Quando encontrada a chave,
+      if (no.esquerda == null) { // se não houver filho à esquerda,
+        return no.direita; // assuma o filho à direita,
       }
-    }
 
-    if (no == null) {
-      return;
-    }
+      if (no.direita == null) { // se não houver filho à direita,
+        return no.esquerda; // assuma o filho à esquerda.
+      }
 
-    if (no.esquerda == null) { // Quando não houver filho à esquerda,
-      this.transplantar(no, no.direita); // assuma o filho à direita.
-    } else if (no.direita == null) { // Quando não houver filho à direita,
-      this.transplantar(no, no.esquerda); // assuma o filho à esquerda.
-    } else { // Quando houverem ambos os filhos,
+      // Quando houverem ambos os filhos,
+
       Node substituto = this.minimo(no.direita); // assuma o menor à direita.
 
-      if (substituto.pai != no) { // Atribua a direita do nó ao nó substituto, caso não seja filho direto do nó.
-        this.transplantar(substituto, substituto.direita);
-
-        substituto.direita = no.direita;
-        substituto.direita.pai = substituto;
-      }
-
-      this.transplantar(no, substituto); // Atribua a esquerda do nó ao nó substituto.
-
-      substituto.esquerda = no.esquerda;
-      substituto.esquerda.pai = substituto;
+      no.chave = substituto.chave;
+      no.direita = this.deletar(no.direita, no.chave); // Remova o menor à direita.
     }
+
+    return no;
   }
 
   /**
@@ -89,29 +91,14 @@ public class BST {
    * recebido.
    */
   public Node minimo(Node no) {
-    while (no.esquerda != null) {
-      no = no.esquerda;
+    if (no == null) {
+      return no;
     }
 
-    return no;
-  }
-
-  /**
-   * Método responsável por atribuir ao segundo nó recebido a posição do
-   * primeiro nó, vinculando o pai do primeiro nó ao segundo, desvinculando-o
-   * do primeiro.
-   */
-  public void transplantar(Node primeiroNo, Node segundoNo) {
-    if (primeiroNo.pai == null) { // Quando não houver pai,
-      this.raiz = segundoNo; // insira na raiz.
-    } else if (primeiroNo.pai.esquerda == primeiroNo) { // Quando o primeiro nó for o filho à esquerda,
-      primeiroNo.pai.esquerda = segundoNo; // insira o segundo nó à esquerda.
-    } else { // Quando o primeiro nó for o filho à direita,
-      primeiroNo.pai.direita = segundoNo; // insira o segundo nó à direita.
+    if (no.esquerda == null) {
+      return no;
     }
 
-    if (segundoNo != null) { // Se o segundo nó não for nulo,
-      segundoNo.pai = primeiroNo.pai; // vincule-o ao pai do primeiro nó.
-    }
+    return this.minimo(no.esquerda);
   }
 }
