@@ -138,6 +138,8 @@ public class BST {
 
       substituto.esquerda = no.esquerda;
       substituto.esquerda.pai = substituto;
+
+      walk(no, null);
     }
   }
 
