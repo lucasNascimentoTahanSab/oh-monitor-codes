@@ -71,7 +71,7 @@ public class BST {
     } else if (chave > no.chave) {
       no.direita = this.deletar(no, no.direita, chave);
 
-      walk(no.esquerda, no);
+      walk(no.direita, no);
     } else {
       if (no.esquerda == null) {
         walk(no, no.direita);
