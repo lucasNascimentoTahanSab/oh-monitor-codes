@@ -64,6 +64,8 @@ public class BST {
   }
 
   public void imprimirInOrdem() {
+    walk(null, this.raiz);
+
     this.imprimirInOrdem(null, this.raiz);
   }
 
@@ -72,15 +74,17 @@ public class BST {
       return;
     }
 
-    walk(pai, no);
+    walk(no, no.esquerda);
 
     this.imprimirInOrdem(no, no.esquerda);
 
     no.imprimirChave();
 
-    walk(null, no.direita);
+    walk(no, no.direita);
 
     this.imprimirInOrdem(no, no.direita);
+
+    walk(no, pai);
   }
 
   void insert(Node node) {
