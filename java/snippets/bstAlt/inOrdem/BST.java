@@ -78,6 +78,8 @@ public class BST {
 
     no.imprimirChave();
 
+    walk(null, no.direita);
+
     this.imprimirInOrdem(no, no.direita);
   }
 
