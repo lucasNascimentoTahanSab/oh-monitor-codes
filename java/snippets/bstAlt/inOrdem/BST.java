@@ -65,8 +65,6 @@ public class BST {
 
   public void imprimirInOrdem() {
     this.imprimirInOrdem(null, this.raiz);
-
-    System.out.println("subject-output/");
   }
 
   private void imprimirInOrdem(Node pai, Node no) {
