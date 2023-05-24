@@ -76,7 +76,7 @@ public class BST {
 
     this.imprimirInOrdem(no, no.esquerda);
 
-    System.out.print("subject-output/" + no.chave + ' ');
+    no.imprimirChave();
 
     this.imprimirInOrdem(no, no.direita);
   }
