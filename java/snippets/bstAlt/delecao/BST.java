@@ -11,9 +11,25 @@ public class BST {
       this.direita = null;
       this.pai = null;
     }
+
+    public Integer obterChave() {
+      return this.chave;
+    }
+
+    public Node obterNoEsquerda() {
+      return this.esquerda;
+    }
+
+    public Node obterNoDireita() {
+      return this.direita;
+    }
+
+    public Node obterNoPai() {
+      return this.pai;
+    }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
@@ -21,12 +37,128 @@ public class BST {
     this.initialize();
   }
 
+  public void deletar(Integer chave) {
+    Node no = this.raiz;
+
+    while (no != null && no.chave != chave) {
+      this.walk(no.pai, no);
+
+      if (chave < no.chave) {
+        this.walk(no, no.esquerda);
+
+        no = no.esquerda;
+      } else if (chave > no.chave) {
+        this.walk(no, no.direita);
+
+        no = no.direita;
+      }
+    }
+
+    if (no == null) {
+      return;
+    }
+
+    if (no.esquerda == null) {
+      this.subtituirFilho(no.pai, no, no.direita);
+      this.delete(no);
+    } else if (no.direita == null) {
+      this.subtituirFilho(no.pai, no, no.esquerda);
+      this.delete(no);
+    } else {
+      this.substituirQuandoDoisFilhos(no);
+    }
+  }
+
+  private void substituirQuandoDoisFilhos(Node no) {
+    this.walk(no, no.direita);
+
+    Node substituto = this.minimo(no.direita);
+
+    this.substituir(no, substituto);
+  }
+
+  private void substituir(Node no, Node substituto) {
+    if (substituto.pai != no) {
+      this.subtituirFilho(substituto.pai, substituto, substituto.direita);
+      this.substituirPaiADireita(no, substituto);
+    }
+
+    this.subtituirFilho(no.pai, no, substituto);
+    this.substituirPaiAEsquerda(no, substituto);
+  }
+
+  private void substituirPaiAEsquerda(Node no, Node substituto) {
+    this.update(no, substituto.chave);
+    this.delete(substituto);
+
+    no.esquerda.pai = substituto;
+    substituto.esquerda = no.esquerda;
+  }
+
+  private void substituirPaiADireita(Node no, Node substituto) {
+    if (substituto.direita != null) {
+      this.update(substituto, substituto.direita.chave);
+      this.delete(substituto.direita);
+    }
+
+    no.direita.pai = substituto;
+    substituto.direita = no.direita;
+  }
+
+  public Node minimo(Node no) {
+    while (no.esquerda != null) {
+      this.walk(no, no.esquerda);
+
+      no = no.esquerda;
+    }
+
+    return no;
+  }
+
+  private void subtituirFilho(Node pai, Node filho, Node substituto) {
+    if (substituto != null) {
+      this.walk(filho, substituto);
+    }
+
+    if (pai == null) {
+      this.substituirFilhoNaRaiz(substituto);
+    } else if (pai.esquerda == filho) {
+      this.substituirFilhoAEsquerda(pai, substituto);
+    } else if (pai.direita == filho) {
+      this.substituirFilhoADireita(pai, substituto);
+    }
+
+    if (substituto != null) {
+      this.walk(substituto, null);
+    }
+  }
+
+  private void substituirFilhoADireita(Node pai, Node no) {
+    pai.direita = no;
+
+    if (no != null) {
+      no.pai = pai;
+    }
+  }
+
+  private void substituirFilhoAEsquerda(Node pai, Node no) {
+    pai.esquerda = no;
+
+    if (no != null) {
+      no.pai = pai;
+    }
+  }
+
+  private void substituirFilhoNaRaiz(Node no) {
+    this.raiz = no;
+  }
+
   public void inserir(Integer chave) {
     Node pai = null;
     Node filho = this.raiz;
 
     while (filho != null) {
-      walk(pai, filho);
+      this.walk(pai, filho);
 
       pai = filho;
 
@@ -40,30 +172,30 @@ public class BST {
     if (pai == null) {
       this.inserirNaRaiz(chave);
     } else if (chave < pai.chave) {
-      this.inserirAEsquerda(chave, pai);
+      this.inserirAEsquerda(pai, chave);
     } else if (chave > pai.chave) {
-      this.inserirADireita(chave, pai);
+      this.inserirADireita(pai, chave);
     }
   }
 
-  private void inserirADireita(Integer chave, Node no) {
-    this.walk(no, null);
+  private void inserirAEsquerda(Node pai, Integer chave) {
+    this.walk(pai, null);
 
-    no.direita = new Node(chave);
-    no.direita.pai = no;
+    pai.esquerda = new Node(chave);
+    pai.esquerda.pai = pai;
 
-    this.insert(no.direita);
-    this.walk(no.direita, null);
+    this.insert(pai.esquerda);
+    this.walk(pai.esquerda, null);
   }
 
-  private void inserirAEsquerda(Integer chave, Node no) {
-    this.walk(no, null);
+  private void inserirADireita(Node pai, Integer chave) {
+    this.walk(pai, null);
 
-    no.esquerda = new Node(chave);
-    no.esquerda.pai = no;
+    pai.direita = new Node(chave);
+    pai.direita.pai = pai;
 
-    this.insert(no.esquerda);
-    this.walk(no.esquerda, null);
+    this.insert(pai.direita);
+    this.walk(pai.direita, null);
   }
 
   private void inserirNaRaiz(Integer chave) {
@@ -73,112 +205,17 @@ public class BST {
     this.walk(this.raiz, null);
   }
 
-  public void deletar(Integer chave) {
-    Node no = this.raiz;
-
-    while (no != null && no.chave != chave) {
-      walk(no.pai, no);
-
-      if (chave < no.chave) {
-        walk(no, no.esquerda);
-
-        no = no.esquerda;
-      } else if (chave > no.chave) {
-        walk(no, no.direita);
-
-        no = no.direita;
-      }
-    }
-
-    if (no == null) {
-      return;
-    }
-
-    if (no.esquerda == null) {
-      if (no.direita != null) { walk(no, no.direita); }
-
-      this.transplantar(no, no.direita);
-
-      if (no.direita != null) { walk(no.direita, null); }
-
-      delete(no);
-    } else if (no.direita == null) {
-      if (no.esquerda != null) { walk(no, no.esquerda); }
-      
-      this.transplantar(no, no.esquerda);
-
-      if (no.esquerda != null) { walk(no.esquerda, no); }
-
-      delete(no);
-    } else {
-      walk(no, no.direita);
-
-      Node substituto = this.minimo(no.direita);
-
-      if (substituto.pai != no) {
-        if (substituto.direita != null) { walk(substituto, substituto.direita); }
-
-        this.transplantar(substituto, substituto.direita);
-
-        if (substituto.direita != null) { 
-          walk(substituto.direita, substituto); 
-          update(substituto, substituto.direita.chave);
-          delete(substituto.direita);
-        }
-
-        substituto.direita = no.direita;
-        substituto.direita.pai = substituto;
-      }
-
-      this.transplantar(no, substituto);
-      
-      walk(substituto, no);
-      update(no, substituto.chave);
-      delete(substituto);
-
-      substituto.esquerda = no.esquerda;
-      substituto.esquerda.pai = substituto;
-
-      walk(substituto, null);
-    }
-  }
-
-  public Node minimo(Node no) {
-    while (no.esquerda != null) {
-      walk(no, no.esquerda);
-
-      no = no.esquerda;
-    }
-
-    return no;
-  }
-
-  public void transplantar(Node primeiroNo, Node segundoNo) {
-    if (primeiroNo.pai == null) {
-      this.raiz = segundoNo;
-    } else if (primeiroNo.pai.esquerda == primeiroNo) {
-      primeiroNo.pai.esquerda = segundoNo;
-    } else {
-      primeiroNo.pai.direita = segundoNo;
-    }
-
-    if (segundoNo != null) {
-      segundoNo.pai = primeiroNo.pai;
-    }
-  }
-
   private void update(Node no, int novoValor) {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"address\": \"" + System.identityHashCode(no) + "\", " +
-        "\"old\": " + no.chave + ", " +
-        "\"new\": " + novoValor + ", " +
-        "\"operation\": \"update\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + System.identityHashCode(no) + "\", " +
+            "\"old\": " + no.chave + ", " +
+            "\"new\": " + novoValor + ", " +
+            "\"operation\": \"update\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -186,13 +223,12 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
-        "\"value\": " + (no != null ? no.chave : null) + ", " +
-        "\"operation\": \"delete\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+            "\"value\": " + (no != null ? no.chave : null) + ", " +
+            "\"operation\": \"delete\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -200,13 +236,12 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
-        "\"value\": " + (no != null ? no.chave : null) + ", " +
-        "\"operation\": \"insert\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+            "\"value\": " + (no != null ? no.chave : null) + ", " +
+            "\"operation\": \"insert\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -214,13 +249,12 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
-        "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
-        "\"operation\": \"walk\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
+            "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
+            "\"operation\": \"walk\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -228,11 +262,10 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"address\": \"" + System.identityHashCode(this) + "\", " +
-        "\"operation\": \"initialize\" " +
-      "}"
-    );
+        "{ " +
+            "\"address\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"initialize\" " +
+            "}");
     System.out.print("\n");
   }
 }

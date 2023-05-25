@@ -10,8 +10,8 @@ public class BST {
       this.direita = null;
     }
 
-    public void imprimirChave() {
-      System.out.println(this.chave);
+    public Integer obterChave() {
+      return this.chave;
     }
 
     public Node obterNoEsquerda() {
@@ -23,15 +23,37 @@ public class BST {
     }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
   }
 
   /**
-   * Método responsável pela inserção de uma nova chave em
-   * árvore binária de busca a partir da raiz.
+   * Método responsável pela impressão do nós da BST em pré-ordem.
+   */
+  public void imprimirPreOrdem() {
+    this.imprimirPreOrdem(this.raiz);
+  }
+
+  /**
+   * Método responsável por percorrer BST recursivamente para apresentação
+   * dos nós em pré-ordem crescente.
+   */
+  private void imprimirPreOrdem(Node no) {
+    if (no == null) { // Quando nó nulo,
+      return; // retorne.
+    }
+
+    System.out.print(no.chave); // Imprima a chave do nó atual,
+
+    this.imprimirPreOrdem(no.esquerda); // percorra a BST à esquerda,
+    this.imprimirPreOrdem(no.direita); // percorra a BST à direita.
+  }
+
+  /**
+   * Método responsável pela inserção de uma nova chave em BST
+   * a partir da raiz.
    */
   public void inserir(Integer chave) {
     this.raiz = inserir(this.raiz, chave);
@@ -53,27 +75,5 @@ public class BST {
     }
 
     return no;
-  }
-
-  /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
-   */
-  public void imprimirPreOrdem() {
-    this.imprimirPreOrdem(this.raiz);
-  }
-
-  /**
-   * Método responsável por percorrer BST recursivamente para apresentação
-   * dos nós em pré-ordem crescente.
-   */
-  private void imprimirPreOrdem(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return; // retorne.
-    }
-
-    no.imprimirChave(); // Imprima a chave do nó atual,
-
-    this.imprimirPreOrdem(no.esquerda); // percorra a BST à esquerda,
-    this.imprimirPreOrdem(no.direita); // percorra a BST à direita.
   }
 }

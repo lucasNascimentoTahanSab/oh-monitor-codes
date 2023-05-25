@@ -9,17 +9,29 @@ public class BST {
       this.esquerda = null;
       this.direita = null;
     }
+
+    public Integer obterChave() {
+      return this.chave;
+    }
+
+    public Node obterNoEsquerda() {
+      return this.esquerda;
+    }
+
+    public Node obterNoDireita() {
+      return this.direita;
+    }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
   }
 
   /**
-   * Método responsável pela inserção de uma nova chave em
-   * árvore binária de busca a partir da raiz.
+   * Método responsável pela inserção de uma nova chave em BST
+   * a partir da raiz.
    */
   public void inserir(Integer chave) {
     this.raiz = inserir(this.raiz, chave);

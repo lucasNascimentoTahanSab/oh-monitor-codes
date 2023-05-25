@@ -11,9 +11,25 @@ public class BST {
       this.direita = null;
       this.pai = null;
     }
+
+    public Integer obterChave() {
+      return this.chave;
+    }
+
+    public Node obterNoEsquerda() {
+      return this.esquerda;
+    }
+
+    public Node obterNoDireita() {
+      return this.direita;
+    }
+
+    public Node obterNoPai() {
+      return this.pai;
+    }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
@@ -26,7 +42,7 @@ public class BST {
     Node filho = this.raiz;
 
     while (filho != null) {
-      walk(pai, filho);
+      this.walk(pai, filho);
 
       pai = filho;
 
@@ -40,30 +56,30 @@ public class BST {
     if (pai == null) {
       this.inserirNaRaiz(chave);
     } else if (chave < pai.chave) {
-      this.inserirAEsquerda(chave, pai);
+      this.inserirAEsquerda(pai, chave);
     } else if (chave > pai.chave) {
-      this.inserirADireita(chave, pai);
+      this.inserirADireita(pai, chave);
     }
   }
 
-  private void inserirADireita(Integer chave, Node no) {
-    this.walk(no, null);
+  private void inserirAEsquerda(Node pai, Integer chave) {
+    this.walk(pai, null);
 
-    no.direita = new Node(chave);
-    no.direita.pai = no;
+    pai.esquerda = new Node(chave);
+    pai.esquerda.pai = pai;
 
-    this.insert(no.direita);
-    this.walk(no.direita, null);
+    this.insert(pai.esquerda);
+    this.walk(pai.esquerda, null);
   }
 
-  private void inserirAEsquerda(Integer chave, Node no) {
-    this.walk(no, null);
+  private void inserirADireita(Node pai, Integer chave) {
+    this.walk(pai, null);
 
-    no.esquerda = new Node(chave);
-    no.esquerda.pai = no;
+    pai.direita = new Node(chave);
+    pai.direita.pai = pai;
 
-    this.insert(no.esquerda);
-    this.walk(no.esquerda, null);
+    this.insert(pai.direita);
+    this.walk(pai.direita, null);
   }
 
   private void inserirNaRaiz(Integer chave) {
@@ -73,31 +89,29 @@ public class BST {
     this.walk(this.raiz, null);
   }
 
-  void insert(Node node) {
+  private void insert(Node node) {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
-        "\"value\": " + (node != null ? node.chave : null) + ", " +
-        "\"operation\": \"insert\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"insert\" " +
+            "}");
     System.out.print("\n");
   }
 
-  void walk(Node origin, Node destiny) {
+  private void walk(Node origin, Node destiny) {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
-        "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
-        "\"operation\": \"walk\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
+            "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
+            "\"operation\": \"walk\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -105,11 +119,10 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"address\": \"" + System.identityHashCode(this) + "\", " +
-        "\"operation\": \"initialize\" " +
-      "}"
-    );
+        "{ " +
+            "\"address\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"initialize\" " +
+            "}");
     System.out.print("\n");
   }
 }

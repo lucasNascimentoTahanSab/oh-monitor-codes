@@ -10,8 +10,8 @@ public class BST {
       this.direita = null;
     }
 
-    public void imprimirChave() {
-      System.out.println("subject-output/" + this.chave);
+    public Integer obterChave() {
+      return this.chave;
     }
 
     public Node obterNoEsquerda() {
@@ -23,12 +23,36 @@ public class BST {
     }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
 
     this.initialize();
+  }
+
+  public void imprimirPreOrdem() {
+    this.walk(null, this.raiz);
+
+    this.imprimirPreOrdem(null, this.raiz);
+  }
+
+  private void imprimirPreOrdem(Node pai, Node no) {
+    if (no == null) {
+      return;
+    }
+
+    System.out.print(no.chave + ' ');
+
+    this.walk(no, no.esquerda);
+
+    this.imprimirPreOrdem(no, no.esquerda);
+
+    this.walk(no, no.direita);
+
+    this.imprimirPreOrdem(no, no.direita);
+
+    this.walk(no, pai);
   }
 
   public void inserir(Integer chave) {
@@ -39,7 +63,9 @@ public class BST {
 
   private Node inserir(Node pai, Node filho, Integer chave) {
     if (filho == null) {
-      if (pai != null) { this.walk(pai, null); }
+      if (pai != null) {
+        this.walk(pai, null);
+      }
 
       filho = new Node(chave);
 
@@ -63,55 +89,29 @@ public class BST {
     return filho;
   }
 
-  public void imprimirPreOrdem() {
-    walk(null, this.raiz);
-
-    this.imprimirPreOrdem(null, this.raiz);
-  }
-
-  private void imprimirPreOrdem(Node pai, Node no) {
-    if (no == null) {
-      return;
-    }
-
-    no.imprimirChave();
-
-    walk(no, no.esquerda);
-
-    this.imprimirPreOrdem(no, no.esquerda);
-    
-    walk(no, no.direita);
-
-    this.imprimirPreOrdem(no, no.direita);
-
-    walk(no, pai);
-  }
-
-  void insert(Node node) {
+  private void insert(Node node) {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
-        "\"value\": " + (node != null ? node.chave : null) + ", " +
-        "\"operation\": \"insert\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"insert\" " +
+            "}");
     System.out.print("\n");
   }
 
-  void walk(Node origin, Node destiny) {
+  private void walk(Node origin, Node destiny) {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-        "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
-        "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
-        "\"operation\": \"walk\" " +
-      "}"
-    );
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
+            "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
+            "\"operation\": \"walk\" " +
+            "}");
     System.out.print("\n");
   }
 
@@ -119,11 +119,10 @@ public class BST {
     System.out.print("subject");
     System.out.print("/");
     System.out.print(
-      "{ " +
-        "\"address\": \"" + System.identityHashCode(this) + "\", " +
-        "\"operation\": \"initialize\" " +
-      "}"
-    );
+        "{ " +
+            "\"address\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"initialize\" " +
+            "}");
     System.out.print("\n");
   }
 }

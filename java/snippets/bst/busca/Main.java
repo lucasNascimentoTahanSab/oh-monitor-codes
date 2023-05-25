@@ -11,8 +11,8 @@ public class Main {
 
     BST.Node no = bst.buscar(28); // Obtenção do nó de chave 28.
 
-    no.imprimirChave(); // Impressão da chave do nó recuperado.
-    no.obterNoEsquerda().imprimirChave(); // Impressão da chave do nó à esquerda do nó recuperado.
-    no.obterNoDireita().imprimirChave(); // Impressão da chave do nó à direita do nó recuperado.
+    System.out.println(no.obterChave()); // Impressão da chave do nó recuperado.
+    System.out.println(no.obterNoEsquerda().obterChave()); // Impressão da chave do nó à esquerda do nó recuperado.
+    System.out.println(no.obterNoDireita().obterChave()); // Impressão da chave do nó à direita do nó recuperado.
   }
 }

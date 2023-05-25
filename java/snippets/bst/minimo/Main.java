@@ -11,6 +11,6 @@ public class Main {
 
     BST.Node no = bst.minimo();
 
-    no.imprimirChave();
+    System.out.println(no.obterChave());
   }
 }

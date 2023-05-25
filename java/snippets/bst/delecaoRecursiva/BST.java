@@ -9,43 +9,29 @@ public class BST {
       this.esquerda = null;
       this.direita = null;
     }
+
+    public Integer obterChave() {
+      return this.chave;
+    }
+
+    public Node obterNoEsquerda() {
+      return this.esquerda;
+    }
+
+    public Node obterNoDireita() {
+      return this.direita;
+    }
   }
 
-  private Node raiz;
+  public Node raiz;
 
   public BST() {
     this.raiz = null;
   }
 
   /**
-   * Método responsável pela inserção de uma nova chave em
-   * árvore binária de busca a partir da raiz.
-   */
-  public void inserir(Integer chave) {
-    this.raiz = inserir(this.raiz, chave);
-  }
-
-  /**
-   * Método responsável por caminhar recursivamente pela BST
-   * para a inserção de uma nova chave.
-   */
-  private Node inserir(Node no, Integer chave) {
-    if (no == null) { // Quando nó nulo,
-      return new Node(chave); // insira.
-    }
-
-    if (chave < no.chave) { // Quando menor que o nó atual,
-      no.esquerda = inserir(no.esquerda, chave); // insira à esquerda.
-    } else if (chave > no.chave) { // Quando maior que o nó atual,
-      no.direita = inserir(no.direita, chave); // insira à direita.
-    }
-
-    return no;
-  }
-
-  /**
-   * Método responsável pela deleção da chave recebida em
-   * árvore binária de busca a partir da raiz.
+   * Método responsável pela deleção de um nó a partir da chave
+   * recebida.
    */
   public void deletar(Integer chave) {
     this.raiz = this.deletar(this.raiz, chave);
@@ -53,11 +39,11 @@ public class BST {
 
   /**
    * Método responsável por caminhar recursivamente pela BST
-   * para remoção da chave recebida.
+   * para a remoção da chave recebida.
    */
-  public Node deletar(Node no, Integer chave) {
+  private Node deletar(Node no, Integer chave) {
     if (no == null) { // Quando chave não encontrada,
-      return no; // retorne.
+      return no; // retorne nulo.
     }
 
     if (chave < no.chave) { // Quando chave menor que a chave do nó atual,
@@ -85,12 +71,42 @@ public class BST {
   }
 
   /**
-   * Método responsável pela obtenção do nó de menor chave a partir do nó
-   * recebido.
+   * Método responsável por percorrer recursivamente a BST em busca
+   * do nó de menor chave.
    */
-  public Node minimo(Node no) {
-    while (no.esquerda != null) {
-      no = no.esquerda;
+  private Node minimo(Node no) {
+    if (no == null) { // Quando nó nulo,
+      return no; // retorne nulo.
+    }
+
+    if (no.esquerda != null) { // Quando houver nó à esquerda,
+      return this.minimo(no.esquerda); // busque à esquerda.
+    }
+
+    return no; // Nó encontrado.
+  }
+
+  /**
+   * Método responsável pela inserção de uma nova chave em BST
+   * a partir da raiz.
+   */
+  public void inserir(Integer chave) {
+    this.raiz = inserir(this.raiz, chave);
+  }
+
+  /**
+   * Método responsável por caminhar recursivamente pela BST
+   * para a inserção de uma nova chave.
+   */
+  private Node inserir(Node no, Integer chave) {
+    if (no == null) { // Quando nó nulo,
+      return new Node(chave); // insira.
+    }
+
+    if (chave < no.chave) { // Quando menor que o nó atual,
+      no.esquerda = inserir(no.esquerda, chave); // insira à esquerda.
+    } else if (chave > no.chave) { // Quando maior que o nó atual,
+      no.direita = inserir(no.direita, chave); // insira à direita.
     }
 
     return no;
