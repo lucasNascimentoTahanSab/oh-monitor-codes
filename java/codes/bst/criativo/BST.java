@@ -210,7 +210,7 @@ public class BST {
       return; // retorne.
     }
 
-    System.out.print(no.chave); // Imprima a chave do nó atual,
+    System.out.print(no.chave + " "); // Imprima a chave do nó atual,
 
     this.imprimirPreOrdem(no.esquerda); // percorra a BST à esquerda,
     this.imprimirPreOrdem(no.direita); // percorra a BST à direita.
