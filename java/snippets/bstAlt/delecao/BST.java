@@ -75,6 +75,8 @@ public class BST {
     Node substituto = this.minimo(no.direita);
 
     this.substituir(no, substituto);
+
+    this.walk(no, null);
   }
 
   private void substituir(Node no, Node substituto) {
@@ -156,6 +158,10 @@ public class BST {
   public void inserir(Integer chave) {
     Node pai = null;
     Node filho = this.raiz;
+
+    if (filho != null) {
+      this.walk(pai, filho);
+    }
 
     while (filho != null && filho.chave != chave) {
       this.walk(pai, filho);
