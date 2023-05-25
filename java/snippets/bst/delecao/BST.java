@@ -171,7 +171,7 @@ public class BST {
     Node pai = null;
     Node filho = this.raiz;
 
-    while (filho != null) {
+    while (filho != null && filho.chave != chave) {
       pai = filho;
 
       if (chave < filho.chave) {
