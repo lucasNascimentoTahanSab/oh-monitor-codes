@@ -53,11 +53,11 @@ public class BST {
     this.walk(pai, filho);
 
     if (chave < filho.chave) {
-      filho.esquerda = this.inserir(pai, filho.esquerda, chave);
+      filho.esquerda = this.inserir(filho, filho.esquerda, chave);
 
       this.walk(filho.esquerda, filho);
     } else if (chave > filho.chave) {
-      filho.direita = this.inserir(pai, filho.direita, chave);
+      filho.direita = this.inserir(filho, filho.direita, chave);
 
       this.walk(filho.direita, filho);
     }
