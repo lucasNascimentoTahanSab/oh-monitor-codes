@@ -27,214 +27,290 @@ public class BST {
 
   public BST() {
     this.raiz = null;
+
+    this.initialize();
   }
 
-  /**
-   * Método responsável pela inserção de uma nova chave em BST
-   * a partir da raiz.
-   */
   public void inserir(Integer chave) {
-    this.raiz = inserir(this.raiz, chave);
+    this.raiz = this.inserir(null, this.raiz, chave);
+
+    this.walk(this.raiz, null);
   }
 
-  /**
-   * Método responsável por caminhar recursivamente pela BST
-   * para a inserção de uma nova chave.
-   */
-  private Node inserir(Node no, Integer chave) {
-    if (no == null) { // Quando nó nulo,
-      return new Node(chave); // insira.
+  private Node inserir(Node pai, Node filho, Integer chave) {
+    if (filho == null) {
+      if (pai != null) {
+        this.walk(pai, null);
+      }
+
+      filho = new Node(chave);
+
+      this.insert(filho);
+
+      return filho;
     }
 
-    if (chave < no.chave) { // Quando menor que o nó atual,
-      no.esquerda = inserir(no.esquerda, chave); // insira à esquerda.
-    } else if (chave > no.chave) { // Quando maior que o nó atual,
-      no.direita = inserir(no.direita, chave); // insira à direita.
+    this.walk(pai, filho);
+
+    if (chave < filho.chave) {
+      filho.esquerda = this.inserir(filho, filho.esquerda, chave);
+
+      this.walk(filho.esquerda, filho);
+    } else if (chave > filho.chave) {
+      filho.direita = this.inserir(filho, filho.direita, chave);
+
+      this.walk(filho.direita, filho);
     }
 
-    return no;
+    return filho;
   }
 
-  /**
-   * Método responsável pela deleção de um nó a partir da chave
-   * recebida.
-   */
   public void deletar(Integer chave) {
-    this.raiz = this.deletar(this.raiz, chave);
+    this.raiz = this.deletar(null, this.raiz, chave);
+
+    this.walk(this.raiz, null);
   }
 
-  /**
-   * Método responsável por caminhar recursivamente pela BST
-   * para a remoção da chave recebida.
-   */
-  private Node deletar(Node no, Integer chave) {
-    if (no == null) { // Quando chave não encontrada,
-      return no; // retorne nulo.
+  private Node deletar(Node pai, Node filho, Integer chave) {
+    if (filho == null) {
+      return filho;
     }
 
-    if (chave < no.chave) { // Quando chave menor que a chave do nó atual,
-      no.esquerda = this.deletar(no.esquerda, chave); // caminhe para a esquerda.
-    } else if (chave > no.chave) { // Quando chave maior que a chave do nó atual,
-      no.direita = this.deletar(no.direita, chave); // caminhe para a direita.
-    } else { // Quando encontrada a chave,
-      if (no.esquerda == null) { // se não houver filho à esquerda,
-        return no.direita; // assuma o filho à direita,
+    this.walk(pai, filho);
+
+    if (chave < filho.chave) {
+      filho.esquerda = this.deletar(filho, filho.esquerda, chave);
+
+      this.walk(filho.esquerda, filho);
+    } else if (chave > filho.chave) {
+      filho.direita = this.deletar(filho, filho.direita, chave);
+
+      this.walk(filho.direita, filho);
+    } else {
+      if (filho.esquerda == null) {
+        this.walk(filho, filho.direita);
+        this.delete(filho);
+
+        return filho.direita;
       }
 
-      if (no.direita == null) { // se não houver filho à direita,
-        return no.esquerda; // assuma o filho à esquerda.
+      if (filho.direita == null) {
+        this.walk(filho, filho.esquerda);
+        this.delete(filho);
+
+        return filho.esquerda;
       }
 
-      // Quando houverem ambos os filhos,
+      this.walk(filho, filho.direita);
 
-      Node substituto = this.minimo(no.direita); // assuma o menor à direita.
+      Node substituto = this.minimo(filho, filho.direita);
 
-      no.chave = substituto.chave;
-      no.direita = this.deletar(no.direita, no.chave); // Remova o menor à direita.
+      update(filho, substituto.chave);
+
+      filho.chave = substituto.chave;
+      filho.direita = this.deletar(filho, filho.direita, filho.chave);
+
+      this.walk(filho.direita, filho);
+    }
+
+    return filho;
+  }
+
+  public Node buscar(Integer chave) {
+    return this.buscar(null, this.raiz, chave);
+  }
+
+  private Node buscar(Node pai, Node no, Integer chave) {
+    if (no == null) {
+      this.walk(no, pai);
+
+      return no;
+    }
+
+    this.walk(pai, no);
+
+    if (chave < no.chave) {
+      return this.buscar(no, no.esquerda, chave);
+    } else if (chave > no.chave) {
+      return this.buscar(no, no.direita, chave);
     }
 
     return no;
   }
 
-  /**
-   * Método responsável pela obtenção do nó com a chave procurada.
-   */
-  public Node buscar(Integer chave) {
-    return this.buscar(this.raiz, chave);
-  }
-
-  /**
-   * Método responsável por caminhar pela BST recursivamente em
-   * busca da chave recebida.
-   */
-  private Node buscar(Node no, Integer chave) {
-    if (no == null) { // Quando nó nulo,
-      return no; // retorne nulo.
-    }
-
-    if (chave < no.chave) { // Quando menor que o nó atual,
-      return this.buscar(no.esquerda, chave); // busque à esquerda.
-    } else if (chave > no.chave) { // Quando maior que o nó atual,
-      return this.buscar(no.direita, chave); // busque à direita.
-    }
-
-    return no; // Nó encontrado.
-  }
-
-  /**
-   * Método responsável pela obtenção do nó de menor chave na
-   * BST.
-   */
   public Node minimo() {
-    return this.minimo(this.raiz);
+    return this.minimo(null, this.raiz);
   }
 
-  /**
-   * Método responsável por percorrer recursivamente a BST em busca
-   * do nó de menor chave.
-   */
-  private Node minimo(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return no; // retorne nulo.
+  private Node minimo(Node pai, Node no) {
+    if (no == null) {
+      this.walk(no, pai);
+
+      return no;
     }
 
-    if (no.esquerda != null) { // Quando houver nó à esquerda,
-      return this.minimo(no.esquerda); // busque à esquerda.
+    this.walk(pai, no);
+
+    if (no.esquerda != null) {
+      return this.minimo(no, no.esquerda);
     }
 
-    return no; // Nó encontrado.
+    return no;
   }
 
-  /**
-   * Método responsável pela obtenção do nó de maior chave na
-   * BST.
-   */
   public Node maximo() {
-    return this.maximo(this.raiz);
+    return this.maximo(null, this.raiz);
   }
 
-  /**
-   * Método responsável por percorrer recursivamente a BST em busca
-   * do nó de maior chave.
-   */
-  private Node maximo(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return no; // retorne nulo.
+  private Node maximo(Node pai, Node no) {
+    if (no == null) {
+      this.walk(no, pai);
+
+      return no;
     }
 
-    if (no.direita != null) { // Quando houver nó à direita,
-      return this.maximo(no.direita); // busque à direita.
+    this.walk(pai, no);
+
+    if (no.direita != null) {
+      return this.maximo(no, no.direita);
     }
 
-    return no; // Nó encontrado.
+    return no;
   }
 
-  /**
-   * Método responsável pela impressão do nós da BST em ordem
-   * crescente.
-   */
   public void imprimirInOrdem() {
-    this.imprimirInOrdem(this.raiz);
+    this.walk(null, this.raiz);
+
+    this.imprimirInOrdem(null, this.raiz);
   }
 
-  /**
-   * Método responsável por percorrer BST recursivamente para apresentação
-   * dos nós em ordem crescente. Para ordem descrescente, bastaria inverter
-   * as chamadas ao método, percorrendo primeiro à direita e depois à esquerda.
-   */
-  private void imprimirInOrdem(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return; // retorne.
+  private void imprimirInOrdem(Node pai, Node no) {
+    if (no == null) {
+      return;
     }
 
-    this.imprimirInOrdem(no.esquerda); // Percorra a BST à esquerda,
+    this.walk(no, no.esquerda);
 
-    System.out.print(no.chave + " "); // imprima a chave do último nó à esquerda ainda não impresso,
+    this.imprimirInOrdem(no, no.esquerda);
 
-    this.imprimirInOrdem(no.direita); // percorra a BST à direita.
+    System.out.print(no.chave + " ");
+
+    this.walk(no, no.direita);
+
+    this.imprimirInOrdem(no, no.direita);
+
+    this.walk(no, pai);
   }
 
-  /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
-   */
   public void imprimirPreOrdem() {
-    this.imprimirPreOrdem(this.raiz);
+    this.walk(null, this.raiz);
+
+    this.imprimirPreOrdem(null, this.raiz);
   }
 
-  /**
-   * Método responsável por percorrer BST recursivamente para apresentação
-   * dos nós em pré-ordem crescente.
-   */
-  private void imprimirPreOrdem(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return; // retorne.
+  private void imprimirPreOrdem(Node pai, Node no) {
+    if (no == null) {
+      return;
     }
 
-    System.out.print(no.chave + " "); // Imprima a chave do nó atual,
+    System.out.print(no.chave + " ");
 
-    this.imprimirPreOrdem(no.esquerda); // percorra a BST à esquerda,
-    this.imprimirPreOrdem(no.direita); // percorra a BST à direita.
+    this.walk(no, no.esquerda);
+
+    this.imprimirPreOrdem(no, no.esquerda);
+
+    this.walk(no, no.direita);
+
+    this.imprimirPreOrdem(no, no.direita);
+
+    this.walk(no, pai);
   }
 
-  /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
-   */
   public void imprimirPosOrdem() {
-    this.imprimirPosOrdem(this.raiz);
+    this.walk(null, this.raiz);
+
+    this.imprimirPosOrdem(null, this.raiz);
   }
 
-  /**
-   * Método responsável por percorrer BST recursivamente para apresentação
-   * dos nós em pré-ordem.
-   */
-  private void imprimirPosOrdem(Node no) {
-    if (no == null) { // Quando nó nulo,
-      return; // retorne.
+  private void imprimirPosOrdem(Node pai, Node no) {
+    if (no == null) {
+      return;
     }
 
-    this.imprimirPosOrdem(no.esquerda); // Percorra a BST à esquerda,
-    this.imprimirPosOrdem(no.direita); // percorra a BST à direita,
+    this.walk(no, no.esquerda);
 
-    System.out.print(no.chave + " "); // imprima a chave do nó atual.
+    this.imprimirPosOrdem(no, no.esquerda);
+
+    this.walk(no, no.direita);
+
+    this.imprimirPosOrdem(no, no.direita);
+
+    this.walk(no, pai);
+
+    System.out.print(no.chave + " ");
+  }
+
+  private void update(Node no, int novoValor) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + System.identityHashCode(no) + "\", " +
+            "\"old\": " + no.chave + ", " +
+            "\"new\": " + novoValor + ", " +
+            "\"operation\": \"update\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void delete(Node no) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+            "\"value\": " + (no != null ? no.chave : null) + ", " +
+            "\"operation\": \"delete\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void insert(Node node) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"insert\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void walk(Node origin, Node destiny) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
+            "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
+            "\"operation\": \"walk\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void initialize() {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"address\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"initialize\" " +
+            "}");
+    System.out.print("\n");
   }
 }
