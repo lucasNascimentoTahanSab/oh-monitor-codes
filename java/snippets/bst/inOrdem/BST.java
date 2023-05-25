@@ -49,7 +49,7 @@ public class BST {
 
     this.imprimirInOrdem(no.esquerda); // Percorra a BST à esquerda,
 
-    System.out.print(no.chave + ' '); // imprima a chave do último nó à esquerda ainda não impresso,
+    System.out.print(no.chave + " "); // imprima a chave do último nó à esquerda ainda não impresso,
 
     this.imprimirInOrdem(no.direita); // percorra a BST à direita.
   }

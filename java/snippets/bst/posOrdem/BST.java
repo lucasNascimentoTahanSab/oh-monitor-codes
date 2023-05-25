@@ -48,7 +48,7 @@ public class BST {
     this.imprimirPosOrdem(no.esquerda); // Percorra a BST à esquerda,
     this.imprimirPosOrdem(no.direita); // percorra a BST à direita,
 
-    System.out.print(no.chave + ' '); // imprima a chave do nó atual.
+    System.out.print(no.chave + " "); // imprima a chave do nó atual.
   }
 
   /**

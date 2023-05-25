@@ -46,7 +46,7 @@ public class BST {
 
     this.imprimirInOrdem(no, no.esquerda);
 
-    System.out.print(no.chave + ' ');
+    System.out.print(no.chave + " ");
 
     this.walk(no, no.direita);
 

@@ -52,7 +52,7 @@ public class BST {
 
     this.walk(no, pai);
 
-    System.out.print(no.chave + ' ');
+    System.out.print(no.chave + " ");
   }
 
   public void inserir(Integer chave) {

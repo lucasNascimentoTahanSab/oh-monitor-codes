@@ -42,7 +42,7 @@ public class BST {
       return;
     }
 
-    System.out.print(no.chave + ' ');
+    System.out.print(no.chave + " ");
 
     this.walk(no, no.esquerda);
 
