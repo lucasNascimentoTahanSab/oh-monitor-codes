@@ -4,9 +4,6 @@ public class Main {
 
     bst.inserir(25);
     bst.inserir(15);
-    bst.inserir(16);
     bst.inserir(28);
-    bst.inserir(27);
-    bst.inserir(32);
   }
 }
