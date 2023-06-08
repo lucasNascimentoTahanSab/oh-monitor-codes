@@ -280,11 +280,10 @@ public class BST {
 
     this.imprimirPosOrdem(no, no.direita);
 
-    this.walk(no, pai);
-
     System.out.print(no.chave + " ");
 
     this.found(no);
+    this.walk(no, pai);
   }
 
   private void update(Node no, int novoValor) {

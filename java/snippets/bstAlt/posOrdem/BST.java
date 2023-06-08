@@ -53,11 +53,10 @@ public class BST {
 
     this.imprimirPosOrdem(no, no.direita);
 
-    this.walk(no, pai);
-
     System.out.print(no.chave + " ");
 
     this.found(no);
+    this.walk(no, pai);
   }
 
   public void inserir(Integer chave) {
