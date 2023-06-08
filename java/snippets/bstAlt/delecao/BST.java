@@ -118,6 +118,8 @@ public class BST {
       no = no.esquerda;
     }
 
+    this.found(no);
+
     return no;
   }
 
@@ -264,6 +266,19 @@ public class BST {
             "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
             "\"value\": " + (no != null ? no.chave : null) + ", " +
             "\"operation\": \"insert\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void found(Node node) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"found\" " +
             "}");
     System.out.print("\n");
   }

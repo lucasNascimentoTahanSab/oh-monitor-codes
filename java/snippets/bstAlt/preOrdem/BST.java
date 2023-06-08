@@ -44,6 +44,7 @@ public class BST {
 
     System.out.print(no.chave + " ");
 
+    this.found(no);
     this.walk(no, no.esquerda);
 
     this.imprimirPreOrdem(no, no.esquerda);
@@ -98,6 +99,19 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void found(Node node) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"found\" " +
             "}");
     System.out.print("\n");
   }

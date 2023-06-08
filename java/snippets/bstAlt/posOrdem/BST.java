@@ -53,6 +53,8 @@ public class BST {
     this.walk(no, pai);
 
     System.out.print(no.chave + " ");
+
+    this.found(no);
   }
 
   public void inserir(Integer chave) {
@@ -98,6 +100,19 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void found(Node node) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"found\" " +
             "}");
     System.out.print("\n");
   }

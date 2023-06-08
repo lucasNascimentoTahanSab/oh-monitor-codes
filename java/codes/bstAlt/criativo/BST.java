@@ -140,6 +140,8 @@ public class BST {
       return this.buscar(no, no.direita, chave);
     }
 
+    this.found(no);
+
     return no;
   }
 
@@ -159,6 +161,8 @@ public class BST {
     if (no.esquerda != null) {
       return this.minimo(no, no.esquerda);
     }
+
+    this.found(no);
 
     return no;
   }
@@ -180,6 +184,8 @@ public class BST {
       return this.maximo(no, no.direita);
     }
 
+    this.found(no);
+
     return no;
   }
 
@@ -200,6 +206,7 @@ public class BST {
 
     System.out.print(no.chave + " ");
 
+    this.found(no);
     this.walk(no, no.direita);
 
     this.imprimirInOrdem(no, no.direita);
@@ -220,6 +227,7 @@ public class BST {
 
     System.out.print(no.chave + " ");
 
+    this.found(no);
     this.walk(no, no.esquerda);
 
     this.imprimirPreOrdem(no, no.esquerda);
@@ -253,6 +261,8 @@ public class BST {
     this.walk(no, pai);
 
     System.out.print(no.chave + " ");
+
+    this.found(no);
   }
 
   private void update(Node no, int novoValor) {
@@ -304,6 +314,19 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void found(Node node) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
+            "\"value\": " + (node != null ? node.chave : null) + ", " +
+            "\"operation\": \"found\" " +
             "}");
     System.out.print("\n");
   }
