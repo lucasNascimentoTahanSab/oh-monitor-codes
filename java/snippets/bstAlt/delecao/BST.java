@@ -76,6 +76,8 @@ public class BST {
 
     Node substituto = this.minimo(no.direita);
 
+    this.found(substituto);
+
     this.substituir(no, substituto);
 
     this.walk(substituto, null);
@@ -117,8 +119,6 @@ public class BST {
 
       no = no.esquerda;
     }
-
-    this.found(no);
 
     return no;
   }

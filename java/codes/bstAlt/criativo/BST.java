@@ -107,6 +107,7 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
+      this.found(substituto);
       this.walk(substituto, null);
       this.update(filho, substituto.chave);
 
@@ -146,7 +147,11 @@ public class BST {
   }
 
   public Node minimo() {
-    return this.minimo(null, this.raiz);
+    Node noMinimo = this.minimo(null, this.raiz);
+
+    this.found(noMinimo);
+
+    return noMinimo;
   }
 
   private Node minimo(Node pai, Node no) {
@@ -162,13 +167,15 @@ public class BST {
       return this.minimo(no, no.esquerda);
     }
 
-    this.found(no);
-
     return no;
   }
 
   public Node maximo() {
-    return this.maximo(null, this.raiz);
+    Node noMaximo = this.maximo(null, this.raiz);
+
+    this.found(noMaximo);
+
+    return noMaximo;
   }
 
   private Node maximo(Node pai, Node no) {
@@ -183,8 +190,6 @@ public class BST {
     if (no.direita != null) {
       return this.maximo(no, no.direita);
     }
-
-    this.found(no);
 
     return no;
   }
