@@ -107,7 +107,9 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
+      this.enterFound();
       this.found(substituto);
+      this.exitFound();
       this.walk(substituto, null);
       this.update(filho, substituto.chave);
 
@@ -141,7 +143,9 @@ public class BST {
       return this.buscar(no, no.direita, chave);
     }
 
+    this.enterFound();
     this.found(no);
+    this.exitFound();
 
     return no;
   }
@@ -149,7 +153,9 @@ public class BST {
   public Node minimo() {
     Node noMinimo = this.minimo(null, this.raiz);
 
+    this.enterFound();
     this.found(noMinimo);
+    this.exitFound();
 
     return noMinimo;
   }
@@ -173,7 +179,9 @@ public class BST {
   public Node maximo() {
     Node noMaximo = this.maximo(null, this.raiz);
 
+    this.enterFound();
     this.found(noMaximo);
+    this.exitFound();
 
     return noMaximo;
   }
@@ -196,8 +204,11 @@ public class BST {
 
   public void imprimirInOrdem() {
     this.walk(null, this.raiz);
+    this.enterFound();
 
     this.imprimirInOrdem(null, this.raiz);
+
+    this.exitFound();
   }
 
   private void imprimirInOrdem(Node pai, Node no) {
@@ -221,8 +232,11 @@ public class BST {
 
   public void imprimirPreOrdem() {
     this.walk(null, this.raiz);
+    this.enterFound();
 
     this.imprimirPreOrdem(null, this.raiz);
+
+    this.exitFound();
   }
 
   private void imprimirPreOrdem(Node pai, Node no) {
@@ -246,8 +260,11 @@ public class BST {
 
   public void imprimirPosOrdem() {
     this.walk(null, this.raiz);
+    this.enterFound();
 
     this.imprimirPosOrdem(null, this.raiz);
+
+    this.exitFound();
   }
 
   private void imprimirPosOrdem(Node pai, Node no) {
@@ -323,6 +340,17 @@ public class BST {
     System.out.print("\n");
   }
 
+  private void enterFound() {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"enterFound\" " +
+            "}");
+    System.out.print("\n");
+  }
+
   private void found(Node node) {
     System.out.print("subject");
     System.out.print("/");
@@ -332,6 +360,17 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"found\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void exitFound() {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"exitFound\" " +
             "}");
     System.out.print("\n");
   }

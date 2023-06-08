@@ -33,8 +33,11 @@ public class BST {
 
   public void imprimirPreOrdem() {
     this.walk(null, this.raiz);
+    this.enterFound();
 
     this.imprimirPreOrdem(null, this.raiz);
+
+    this.exitFound();
   }
 
   private void imprimirPreOrdem(Node pai, Node no) {
@@ -103,6 +106,17 @@ public class BST {
     System.out.print("\n");
   }
 
+  private void enterFound() {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"enterFound\" " +
+            "}");
+    System.out.print("\n");
+  }
+
   private void found(Node node) {
     System.out.print("subject");
     System.out.print("/");
@@ -112,6 +126,17 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"found\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void exitFound() {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"operation\": \"exitFound\" " +
             "}");
     System.out.print("\n");
   }
