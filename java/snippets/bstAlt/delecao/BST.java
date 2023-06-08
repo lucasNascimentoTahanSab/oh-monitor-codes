@@ -58,6 +58,8 @@ public class BST {
       return;
     }
 
+    this.markDelete(no);
+
     if (no.esquerda == null) {
       this.subtituirFilho(no.pai, no, no.direita);
       this.delete(no);
@@ -90,6 +92,7 @@ public class BST {
   }
 
   private void substituirPaiAEsquerda(Node no, Node substituto) {
+    this.markDelete(substituto);
     this.update(no, substituto.chave);
     this.delete(substituto);
 
@@ -99,6 +102,7 @@ public class BST {
 
   private void substituirPaiADireita(Node no, Node substituto) {
     if (substituto.direita != null) {
+      this.markDelete(substituto.direita);
       this.update(substituto, substituto.direita.chave);
       this.delete(substituto.direita);
     }
@@ -158,10 +162,6 @@ public class BST {
   public void inserir(Integer chave) {
     Node pai = null;
     Node filho = this.raiz;
-
-    if (filho != null) {
-      this.walk(pai, filho);
-    }
 
     while (filho != null && filho.chave != chave) {
       this.walk(pai, filho);
@@ -238,6 +238,19 @@ public class BST {
             "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
             "\"value\": " + (no != null ? no.chave : null) + ", " +
             "\"operation\": \"delete\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void markDelete(Node no) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+            "\"value\": " + (no != null ? no.chave : null) + ", " +
+            "\"operation\": \"markDelete\" " +
             "}");
     System.out.print("\n");
   }

@@ -41,11 +41,9 @@ public class BST {
     Node pai = null;
     Node filho = this.raiz;
 
-    if (filho != null) {
-      this.walk(pai, filho);
-    }
-
     while (filho != null && filho.chave != chave) {
+      this.walk(pai, filho);
+
       pai = filho;
 
       if (chave < filho.chave) {

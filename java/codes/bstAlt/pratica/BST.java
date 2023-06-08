@@ -87,6 +87,8 @@ public class BST {
 
       this.walk(filho.direita, filho);
     } else {
+      this.markDelete(filho);
+
       if (filho.esquerda == null) {
         this.walk(filho, filho.direita);
         this.delete(filho);
@@ -105,12 +107,15 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
-      update(filho, substituto.chave);
+      this.walk(substituto, null);
+      this.update(filho, substituto.chave);
 
       filho.chave = substituto.chave;
       filho.direita = this.deletar(filho, filho.direita, filho.chave);
 
-      this.walk(filho.direita, filho);
+      if (filho.direita != null) {
+        this.walk(filho.direita, filho);
+      }
     }
 
     return filho;
@@ -273,6 +278,19 @@ public class BST {
             "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
             "\"value\": " + (no != null ? no.chave : null) + ", " +
             "\"operation\": \"delete\" " +
+            "}");
+    System.out.print("\n");
+  }
+
+  private void markDelete(Node no) {
+    System.out.print("subject");
+    System.out.print("/");
+    System.out.print(
+        "{ " +
+            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
+            "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
+            "\"value\": " + (no != null ? no.chave : null) + ", " +
+            "\"operation\": \"markDelete\" " +
             "}");
     System.out.print("\n");
   }
