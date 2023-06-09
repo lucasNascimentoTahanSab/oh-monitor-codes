@@ -68,7 +68,9 @@ public class BST {
   public void deletar(Integer chave) {
     this.raiz = this.deletar(null, this.raiz, chave);
 
-    this.walk(this.raiz, null);
+    if (this.raiz != null) {
+      this.walk(this.raiz, null);
+    }
   }
 
   private Node deletar(Node pai, Node filho, Integer chave) {
