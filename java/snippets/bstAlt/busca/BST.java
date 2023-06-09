@@ -62,6 +62,8 @@ public class BST {
     this.found(no);
     this.exitFound();
 
+    this.walk(no, pai);
+
     return no;
   }
 
