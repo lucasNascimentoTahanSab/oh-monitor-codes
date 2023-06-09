@@ -30,7 +30,7 @@ public class BST {
   }
 
   /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
+   * Método responsável pela impressão dos nós da BST em pré-ordem.
    */
   public void imprimirPosOrdem() {
     this.imprimirPosOrdem(this.raiz);

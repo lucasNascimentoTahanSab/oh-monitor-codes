@@ -170,7 +170,7 @@ public class BST {
   }
 
   /**
-   * Método responsável pela impressão do nós da BST em ordem
+   * Método responsável pela impressão dos nós da BST em ordem
    * crescente.
    */
   public void imprimirInOrdem() {
@@ -195,7 +195,7 @@ public class BST {
   }
 
   /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
+   * Método responsável pela impressão dos nós da BST em pré-ordem.
    */
   public void imprimirPreOrdem() {
     this.imprimirPreOrdem(this.raiz);
@@ -217,7 +217,7 @@ public class BST {
   }
 
   /**
-   * Método responsável pela impressão do nós da BST em pré-ordem.
+   * Método responsável pela impressão dos nós da BST em pré-ordem.
    */
   public void imprimirPosOrdem() {
     this.imprimirPosOrdem(this.raiz);
