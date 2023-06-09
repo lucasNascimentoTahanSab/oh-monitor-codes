@@ -99,6 +99,8 @@ public class BST {
     Node substituto = this.minimo(no.direita);
 
     this.substituir(no, substituto);
+
+    this.exitFound();
   }
 
   private void substituir(Node no, Node substituto) {
