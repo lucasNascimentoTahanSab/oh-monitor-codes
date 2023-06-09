@@ -32,7 +32,12 @@ public class BST {
   }
 
   public Node minimo() {
-    return this.minimo(null, this.raiz);
+    Node noMinimo = this.minimo(null, this.raiz);
+
+    this.found(noMinimo);
+    this.exitFound();
+
+    return noMinimo;
   }
 
   private Node minimo(Node pai, Node no) {
@@ -45,11 +50,12 @@ public class BST {
     this.walk(pai, no);
 
     if (no.esquerda != null) {
-      return this.minimo(no, no.esquerda);
-    }
+      Node noMinimo = this.minimo(no, no.esquerda);
 
-    this.found(no);
-    this.exitFound();
+      this.walk(noMinimo, no);
+
+      return noMinimo;
+    }
 
     return no;
   }

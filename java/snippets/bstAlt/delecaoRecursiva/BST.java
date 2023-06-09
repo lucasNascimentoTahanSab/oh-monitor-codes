@@ -121,7 +121,11 @@ public class BST {
     this.walk(pai, no);
 
     if (no.esquerda != null) {
-      return this.minimo(no, no.esquerda);
+      Node noMinimo = this.minimo(no, no.esquerda);
+
+      this.walk(noMinimo, no);
+
+      return noMinimo;
     }
 
     return no;

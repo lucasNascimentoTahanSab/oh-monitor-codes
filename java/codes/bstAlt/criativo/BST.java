@@ -193,7 +193,11 @@ public class BST {
     this.walk(pai, no);
 
     if (no.esquerda != null) {
-      return this.minimo(no, no.esquerda);
+      Node noMinimo = this.minimo(no, no.esquerda);
+
+      this.walk(noMinimo, no);
+
+      return noMinimo;
     }
 
     return no;
@@ -218,7 +222,11 @@ public class BST {
     this.walk(pai, no);
 
     if (no.direita != null) {
-      return this.maximo(no, no.direita);
+      Node noMaximo = this.maximo(no, no.direita);
+
+      this.walk(noMaximo, no);
+
+      return noMaximo;
     }
 
     return no;
