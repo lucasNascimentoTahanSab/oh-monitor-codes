@@ -231,6 +231,10 @@ public class BST {
   }
 
   public void imprimirInOrdem() {
+    if (this.raiz == null) {
+      return;
+    }
+
     this.walk(null, this.raiz);
     this.enterFound();
 
@@ -259,6 +263,10 @@ public class BST {
   }
 
   public void imprimirPreOrdem() {
+    if (this.raiz == null) {
+      return;
+    }
+
     this.walk(null, this.raiz);
     this.enterFound();
 
@@ -287,6 +295,10 @@ public class BST {
   }
 
   public void imprimirPosOrdem() {
+    if (this.raiz == null) {
+      return;
+    }
+
     this.walk(null, this.raiz);
     this.enterFound();
 

@@ -32,6 +32,10 @@ public class BST {
   }
 
   public void imprimirPosOrdem() {
+    if (this.raiz == null) {
+      return;
+    }
+
     this.walk(null, this.raiz);
     this.enterFound();
 
