@@ -80,11 +80,15 @@ public class BST {
   private void substituir(Node no, Node substituto) {
     if (substituto.pai != no) { // Quando pai do substituto não for o nó,
       this.subtituirFilho(substituto.pai, substituto, substituto.direita); // pai do substituto recebe filho à direita
-      this.substituirPaiADireita(no, substituto); // e substituto recebe filho à direita do nó.
+      // this.substituirPaiADireita(no, substituto); // e substituto recebe filho à
+      // direita do nó.
     }
 
-    this.subtituirFilho(no.pai, no, substituto); // pai do nó recebe substituto
-    this.substituirPaiAEsquerda(no, substituto); // e substituto recebe filho à esquerda do nó.
+    no.chave = substituto.chave;
+
+    // this.subtituirFilho(no.pai, no, substituto); // pai do nó recebe substituto
+    // this.substituirPaiAEsquerda(no, substituto); // e substituto recebe filho à
+    // esquerda do nó.
   }
 
   /**

@@ -107,11 +107,11 @@ public class BST {
 
     if (substituto.pai != no) {
       this.subtituirFilho(substituto.pai, substituto, substituto.direita);
-      this.substituirPaiADireita(no, substituto);
+      // this.substituirPaiADireita(no, substituto);
     }
 
-    this.subtituirFilho(no.pai, no, substituto);
-    this.substituirPaiAEsquerda(no, substituto);
+    // this.subtituirFilho(no.pai, no, substituto);
+    // this.substituirPaiAEsquerda(no, substituto);
 
     no.chave = substituto.chave;
 
