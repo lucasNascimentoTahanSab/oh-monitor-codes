@@ -91,14 +91,30 @@ public class BST {
 
       if (filho.esquerda == null) {
         this.walk(filho, filho.direita);
-        this.delete(filho);
+
+        if (filho.direita != null) {
+          this.enterFound();
+          this.found(filho.direita);
+          this.delete(filho);
+          this.exitFound();
+        } else {
+          this.delete(filho);
+        }
 
         return filho.direita;
       }
 
       if (filho.direita == null) {
         this.walk(filho, filho.esquerda);
-        this.delete(filho);
+
+        if (filho.esquerda != null) {
+          this.enterFound();
+          this.found(filho.esquerda);
+          this.delete(filho);
+          this.exitFound();
+        } else {
+          this.delete(filho);
+        }
 
         return filho.esquerda;
       }
