@@ -114,6 +114,7 @@ public class BST {
     this.substituirPaiAEsquerda(no, substituto);
 
     this.delete(substituto);
+    this.walk(no, null);
   }
 
   private void substituirPaiAEsquerda(Node no, Node substituto) {
