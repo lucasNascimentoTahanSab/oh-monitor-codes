@@ -81,7 +81,7 @@ public class BST {
 
     this.substituir(no, substituto);
 
-    this.walk(substituto, null);
+    // this.walk(substituto, null);
   }
 
   private void substituir(Node no, Node substituto) {
