@@ -34,7 +34,6 @@ public class BST {
   public Node minimo() {
     Node noMinimo = this.minimo(null, this.raiz);
 
-    this.found(noMinimo);
     this.exitFound();
 
     return noMinimo;
@@ -42,8 +41,6 @@ public class BST {
 
   private Node minimo(Node pai, Node no) {
     if (no == null) {
-      this.walk(no, pai);
-
       return no;
     }
 
@@ -56,6 +53,9 @@ public class BST {
 
       return noMinimo;
     }
+
+    this.found(no);
+    this.walk(no, pai);
 
     return no;
   }

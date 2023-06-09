@@ -34,7 +34,6 @@ public class BST {
   public Node maximo() {
     Node noMaximo = this.maximo(null, this.raiz);
 
-    this.found(noMaximo);
     this.exitFound();
 
     return noMaximo;
@@ -42,8 +41,6 @@ public class BST {
 
   private Node maximo(Node pai, Node no) {
     if (no == null) {
-      this.walk(no, pai);
-
       return no;
     }
 
@@ -56,6 +53,9 @@ public class BST {
 
       return noMaximo;
     }
+
+    this.found(no);
+    this.walk(no, pai);
 
     return no;
   }

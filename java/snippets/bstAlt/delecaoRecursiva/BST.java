@@ -95,7 +95,6 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
-      this.found(substituto);
       this.walk(substituto, filho);
       this.update(filho, substituto.chave);
       this.exitFound();
@@ -113,8 +112,6 @@ public class BST {
 
   private Node minimo(Node pai, Node no) {
     if (no == null) {
-      this.walk(no, pai);
-
       return no;
     }
 
@@ -127,6 +124,9 @@ public class BST {
 
       return noMinimo;
     }
+
+    this.found(no);
+    this.walk(no, pai);
 
     return no;
   }
