@@ -110,7 +110,7 @@ public class BST {
    * do nó recebido.
    */
   public Node minimo(Node no) {
-    while (no.esquerda != null) {
+    while (no != null && no.esquerda != null) {
       no = no.esquerda;
     }
 
