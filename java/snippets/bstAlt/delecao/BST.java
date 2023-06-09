@@ -66,7 +66,6 @@ public class BST {
       if (no.direita != null) {
         this.walk(no, no.direita);
         this.found(no.direita);
-        this.walk(no.direita, no);
       }
 
       this.subtituirFilho(no.pai, no, no.direita);
@@ -80,7 +79,6 @@ public class BST {
       if (no.esquerda != null) {
         this.walk(no, no.esquerda);
         this.found(no.esquerda);
-        this.walk(no.esquerda, no);
       }
 
       this.subtituirFilho(no.pai, no, no.esquerda);
