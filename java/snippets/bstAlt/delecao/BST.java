@@ -103,6 +103,7 @@ public class BST {
 
   private void substituir(Node no, Node substituto) {
     this.walk(substituto, no);
+    this.update(no, substituto.chave);
 
     if (substituto.pai != no) {
       this.subtituirFilho(substituto.pai, substituto, substituto.direita);
@@ -112,9 +113,8 @@ public class BST {
     this.subtituirFilho(no.pai, no, substituto);
     this.substituirPaiAEsquerda(no, substituto);
 
-    this.walk(no, null);
-    this.update(no, substituto.chave);
     this.delete(substituto);
+    this.walk(substituto, null);
   }
 
   private void substituirPaiAEsquerda(Node no, Node substituto) {
