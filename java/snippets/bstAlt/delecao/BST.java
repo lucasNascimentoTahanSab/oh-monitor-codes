@@ -127,6 +127,8 @@ public class BST {
   private void subtituirFilho(Node pai, Node filho, Node substituto) {
     if (substituto != null) {
       this.walk(filho, substituto);
+      this.found(substituto);
+      this.exitFound();
     }
 
     if (pai == null) {
