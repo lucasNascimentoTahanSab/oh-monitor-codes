@@ -49,37 +49,49 @@ public class BST {
     if (chave < filho.chave) {
       filho.esquerda = this.deletar(filho, filho.esquerda, chave);
 
-      this.walk(filho.esquerda, filho);
+      if (filho.esquerda != null) {
+        this.walk(filho.esquerda, filho);
+      }
     } else if (chave > filho.chave) {
       filho.direita = this.deletar(filho, filho.direita, chave);
 
-      this.walk(filho.direita, filho);
+      if (filho.direita != null) {
+        this.walk(filho.direita, filho);
+      }
     } else {
       this.markDelete(filho);
 
       if (filho.esquerda == null) {
+        if (filho.direita != null) {
+        this.walk(filho, filho.direita);
         this.walk(filho, filho.direita);
 
         if (filho.direita != null) {
+          this.walk(filho, filho.direita);
+
+        if (filho.direita != null) {
           this.found(filho.direita);
-          this.delete(filho);
+        }
+
+        this.delete(filho);
+
+        if (filho.direita != null) {
           this.exitFound();
-        } else {
-          this.delete(filho);
         }
 
         return filho.direita;
       }
 
       if (filho.direita == null) {
-        this.walk(filho, filho.esquerda);
+        if (filho.esquerda != null) {
+          this.walk(filho, filho.esquerda);
+          this.found(filho.esquerda);
+        }
+
+        this.delete(filho);
 
         if (filho.esquerda != null) {
-          this.found(filho.esquerda);
-          this.delete(filho);
           this.exitFound();
-        } else {
-          this.delete(filho);
         }
 
         return filho.esquerda;
@@ -91,7 +103,7 @@ public class BST {
 
       this.found(substituto);
       this.exitFound();
-      this.walk(substituto, null);
+      this.walk(substituto, filho);
       this.update(filho, substituto.chave);
 
       filho.chave = substituto.chave;
