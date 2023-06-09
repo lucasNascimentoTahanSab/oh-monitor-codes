@@ -44,12 +44,8 @@ public class BST {
       this.walk(no.pai, no);
 
       if (chave < no.chave) {
-        this.walk(no, no.esquerda);
-
         no = no.esquerda;
       } else if (chave > no.chave) {
-        this.walk(no, no.direita);
-
         no = no.direita;
       }
     }
@@ -61,89 +57,110 @@ public class BST {
     this.markDelete(no);
 
     if (no.esquerda == null) {
+      if (no.direita != null) {
+        this.walk(no, no.direita);
+        this.found(no.direita);
+        this.walk(no.direita, no);
+      }
+
       this.subtituirFilho(no.pai, no, no.direita);
+
       this.delete(no);
+
+      if (no.direita != null) {
+        this.exitFound();
+      }
     } else if (no.direita == null) {
+      if (no.esquerda != null) {
+        this.walk(no, no.esquerda);
+        this.found(no.esquerda);
+        this.walk(no.esquerda, no);
+      }
+
       this.subtituirFilho(no.pai, no, no.esquerda);
+
       this.delete(no);
+
+      if (no.esquerda != null) {
+        this.exitFound();
+      }
     } else {
       this.substituirQuandoDoisFilhos(no);
     }
   }
 
+  /**
+   * Método responsável por substituir o nó recebido pelo nó de
+   * menor chave à direita.
+   */
   private void substituirQuandoDoisFilhos(Node no) {
-    this.walk(no, no.direita);
-
     Node substituto = this.minimo(no.direita);
 
-    this.found(substituto);
-    this.exitFound();
-
     this.substituir(no, substituto);
-
-    // this.walk(substituto, null);
   }
 
+  /**
+   * Método responsável por substituir o nó recebido pelo substituto,
+   * realizando as trocas dos pais e filhos.
+   */
   private void substituir(Node no, Node substituto) {
-    if (substituto.pai != no) {
-      this.subtituirFilho(substituto.pai, substituto, substituto.direita);
-      this.substituirPaiADireita(no, substituto);
+    if (substituto.pai != no) { // Quando pai do substituto não for o nó,
+      this.subtituirFilho(substituto.pai, substituto, substituto.direita); // pai do substituto recebe filho à direita
+      this.substituirPaiADireita(no, substituto); // e substituto recebe filho à direita do nó.
     }
 
-    this.subtituirFilho(no.pai, no, substituto);
-    this.substituirPaiAEsquerda(no, substituto);
+    this.subtituirFilho(no.pai, no, substituto); // pai do nó recebe substituto
+    this.substituirPaiAEsquerda(no, substituto); // e substituto recebe filho à esquerda do nó.
   }
 
+  /**
+   * Método responsável por atribuir filho à esquerda do nó ao
+   * substituto.
+   */
   private void substituirPaiAEsquerda(Node no, Node substituto) {
-    this.markDelete(substituto);
-    this.update(no, substituto.chave);
-    this.delete(substituto);
-
     no.esquerda.pai = substituto;
     substituto.esquerda = no.esquerda;
   }
 
+  /**
+   * Método responsável por atribuir filho à direita do nó ao
+   * substituto.
+   */
   private void substituirPaiADireita(Node no, Node substituto) {
-    if (substituto.direita != null) {
-      this.markDelete(substituto.direita);
-      this.update(substituto, substituto.direita.chave);
-      this.delete(substituto.direita);
-    }
-
     no.direita.pai = substituto;
     substituto.direita = no.direita;
   }
 
+  /**
+   * Método responsável pela obtenção do nó de menor chave a partir
+   * do nó recebido.
+   */
   public Node minimo(Node no) {
     while (no.esquerda != null) {
-      this.walk(no, no.esquerda);
-
       no = no.esquerda;
     }
 
     return no;
   }
 
+  /**
+   * Método responsável por trocar o filho do pai pelo substituto
+   * recebido em processo de remoção do filho.
+   */
   private void subtituirFilho(Node pai, Node filho, Node substituto) {
-    if (substituto != null) {
-      this.walk(filho, substituto);
-      this.found(substituto);
-      this.exitFound();
-    }
-
-    if (pai == null) {
+    if (pai == null) { // Quando não houver pai,
       this.substituirFilhoNaRaiz(substituto);
-    } else if (pai.esquerda == filho) {
+    } else if (pai.esquerda == filho) { // quando o filho estiver à esquerda,
       this.substituirFilhoAEsquerda(pai, substituto);
-    } else if (pai.direita == filho) {
+    } else if (pai.direita == filho) { // quando o filho estiver à direita.
       this.substituirFilhoADireita(pai, substituto);
-    }
-
-    if (substituto != null) {
-      this.walk(substituto, null);
     }
   }
 
+  /**
+   * Método responsável por transplante à direita do pai quando
+   * nó filho original estiver à direita.
+   */
   private void substituirFilhoADireita(Node pai, Node no) {
     pai.direita = no;
 
@@ -152,6 +169,10 @@ public class BST {
     }
   }
 
+  /**
+   * Método responsável por transplante à esquerda do pai quando
+   * nó filho original estiver à esquerda.
+   */
   private void substituirFilhoAEsquerda(Node pai, Node no) {
     pai.esquerda = no;
 
@@ -160,6 +181,10 @@ public class BST {
     }
   }
 
+  /**
+   * Método responsável por transplante em raiz quando não houver
+   * nó pai.
+   */
   private void substituirFilhoNaRaiz(Node no) {
     this.raiz = no;
   }
