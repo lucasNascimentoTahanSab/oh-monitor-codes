@@ -107,26 +107,12 @@ public class BST {
 
     if (substituto.pai != no) {
       this.subtituirFilho(substituto.pai, substituto, substituto.direita);
-      // this.substituirPaiADireita(no, substituto);
     }
-
-    // this.subtituirFilho(no.pai, no, substituto);
-    // this.substituirPaiAEsquerda(no, substituto);
 
     no.chave = substituto.chave;
 
     this.delete(substituto);
     this.walk(no, null);
-  }
-
-  private void substituirPaiAEsquerda(Node no, Node substituto) {
-    no.esquerda.pai = substituto;
-    substituto.esquerda = no.esquerda;
-  }
-
-  private void substituirPaiADireita(Node no, Node substituto) {
-    no.direita.pai = substituto;
-    substituto.direita = no.direita;
   }
 
   public Node minimo(Node no) {

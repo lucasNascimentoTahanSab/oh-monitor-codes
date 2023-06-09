@@ -74,39 +74,15 @@ public class BST {
   }
 
   /**
-   * Método responsável por substituir o nó recebido pelo substituto,
-   * realizando as trocas dos pais e filhos.
+   * Método responsável por atualizar o nó recebido com o substituto,
+   * removendo o substituto da BST.
    */
   private void substituir(Node no, Node substituto) {
     if (substituto.pai != no) { // Quando pai do substituto não for o nó,
-      this.subtituirFilho(substituto.pai, substituto, substituto.direita); // pai do substituto recebe filho à direita
-      // this.substituirPaiADireita(no, substituto); // e substituto recebe filho à
-      // direita do nó.
+      this.subtituirFilho(substituto.pai, substituto, substituto.direita); // pai do substituto recebe filho à direita.
     }
 
-    no.chave = substituto.chave;
-
-    // this.subtituirFilho(no.pai, no, substituto); // pai do nó recebe substituto
-    // this.substituirPaiAEsquerda(no, substituto); // e substituto recebe filho à
-    // esquerda do nó.
-  }
-
-  /**
-   * Método responsável por atribuir filho à esquerda do nó ao
-   * substituto.
-   */
-  private void substituirPaiAEsquerda(Node no, Node substituto) {
-    no.esquerda.pai = substituto;
-    substituto.esquerda = no.esquerda;
-  }
-
-  /**
-   * Método responsável por atribuir filho à direita do nó ao
-   * substituto.
-   */
-  private void substituirPaiADireita(Node no, Node substituto) {
-    no.direita.pai = substituto;
-    substituto.direita = no.direita;
+    no.chave = substituto.chave; // Atualiza a chave do nó.
   }
 
   /**
