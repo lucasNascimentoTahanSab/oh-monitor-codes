@@ -40,13 +40,19 @@ public class BST {
   public void deletar(Integer chave) {
     Node no = this.raiz;
 
-    while (no != null && no.chave != chave) {
-      this.walk(no.pai, no);
+    if (no != null) {
+      this.walk(null, no);
+    }
 
+    while (no != null && no.chave != chave) {
       if (chave < no.chave) {
         no = no.esquerda;
+
+        this.walk(no, no.esquerda);
       } else if (chave > no.chave) {
         no = no.direita;
+
+        this.walk(no, no.direita);
       }
     }
 
