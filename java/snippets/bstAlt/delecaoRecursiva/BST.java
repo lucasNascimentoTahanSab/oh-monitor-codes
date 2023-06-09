@@ -63,13 +63,7 @@ public class BST {
 
       if (filho.esquerda == null) {
         if (filho.direita != null) {
-        this.walk(filho, filho.direita);
-        this.walk(filho, filho.direita);
-
-        if (filho.direita != null) {
           this.walk(filho, filho.direita);
-
-        if (filho.direita != null) {
           this.found(filho.direita);
         }
 
@@ -127,7 +121,11 @@ public class BST {
     this.walk(pai, no);
 
     if (no.esquerda != null) {
-      return this.minimo(no, no.esquerda);
+      Node noMinimo = this.minimo(no, no.esquerda);
+
+      this.found(noMinimo);
+
+      return noMinimo;
     }
 
     return no;
