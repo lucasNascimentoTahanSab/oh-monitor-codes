@@ -45,9 +45,17 @@ public class BST {
     this.walk(pai, no);
 
     if (chave < no.chave) {
-      return this.buscar(no, no.esquerda, chave);
+      Node filho = this.buscar(no, no.esquerda, chave);
+
+      this.walk(no, pai);
+
+      return filho;
     } else if (chave > no.chave) {
-      return this.buscar(no, no.direita, chave);
+      Node filho = this.buscar(no, no.direita, chave);
+
+      this.walk(no, pai);
+
+      return filho;
     }
 
     this.enterFound();
