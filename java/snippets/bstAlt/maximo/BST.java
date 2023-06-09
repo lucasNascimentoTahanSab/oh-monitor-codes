@@ -49,7 +49,7 @@ public class BST {
     if (no.direita != null) {
       Node noMaximo = this.maximo(no, no.direita);
 
-      this.walk(noMaximo, no);
+      this.walk(no, pai);
 
       return noMaximo;
     }
