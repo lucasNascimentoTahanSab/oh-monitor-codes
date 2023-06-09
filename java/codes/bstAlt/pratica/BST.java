@@ -95,7 +95,6 @@ public class BST {
         this.walk(filho, filho.direita);
 
         if (filho.direita != null) {
-          this.enterFound();
           this.found(filho.direita);
           this.delete(filho);
           this.exitFound();
@@ -110,7 +109,6 @@ public class BST {
         this.walk(filho, filho.esquerda);
 
         if (filho.esquerda != null) {
-          this.enterFound();
           this.found(filho.esquerda);
           this.delete(filho);
           this.exitFound();
@@ -125,7 +123,6 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
-      this.enterFound();
       this.found(substituto);
       this.exitFound();
       this.walk(substituto, null);
@@ -169,7 +166,6 @@ public class BST {
       return filho;
     }
 
-    this.enterFound();
     this.found(no);
     this.exitFound();
 
@@ -181,7 +177,6 @@ public class BST {
   public Node minimo() {
     Node noMinimo = this.minimo(null, this.raiz);
 
-    this.enterFound();
     this.found(noMinimo);
     this.exitFound();
 
@@ -207,7 +202,6 @@ public class BST {
   public Node maximo() {
     Node noMaximo = this.maximo(null, this.raiz);
 
-    this.enterFound();
     this.found(noMaximo);
     this.exitFound();
 
@@ -236,7 +230,6 @@ public class BST {
     }
 
     this.walk(null, this.raiz);
-    this.enterFound();
 
     this.imprimirInOrdem(null, this.raiz);
 
@@ -268,7 +261,6 @@ public class BST {
     }
 
     this.walk(null, this.raiz);
-    this.enterFound();
 
     this.imprimirPreOrdem(null, this.raiz);
 
@@ -300,7 +292,6 @@ public class BST {
     }
 
     this.walk(null, this.raiz);
-    this.enterFound();
 
     this.imprimirPosOrdem(null, this.raiz);
 
@@ -375,17 +366,6 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
-            "}");
-    System.out.print("\n");
-  }
-
-  private void enterFound() {
-    System.out.print("subject");
-    System.out.print("/");
-    System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"operation\": \"enterFound\" " +
             "}");
     System.out.print("\n");
   }

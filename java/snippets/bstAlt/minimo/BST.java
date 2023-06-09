@@ -48,7 +48,6 @@ public class BST {
       return this.minimo(no, no.esquerda);
     }
 
-    this.enterFound();
     this.found(no);
     this.exitFound();
 
@@ -98,17 +97,6 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
-            "}");
-    System.out.print("\n");
-  }
-
-  private void enterFound() {
-    System.out.print("subject");
-    System.out.print("/");
-    System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"operation\": \"enterFound\" " +
             "}");
     System.out.print("\n");
   }

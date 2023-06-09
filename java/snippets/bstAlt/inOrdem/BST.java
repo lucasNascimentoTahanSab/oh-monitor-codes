@@ -37,7 +37,6 @@ public class BST {
     }
 
     this.walk(null, this.raiz);
-    this.enterFound();
 
     this.imprimirInOrdem(null, this.raiz);
 
@@ -106,17 +105,6 @@ public class BST {
             "\"address\": \"" + (node != null ? System.identityHashCode(node) : null) + "\", " +
             "\"value\": " + (node != null ? node.chave : null) + ", " +
             "\"operation\": \"insert\" " +
-            "}");
-    System.out.print("\n");
-  }
-
-  private void enterFound() {
-    System.out.print("subject");
-    System.out.print("/");
-    System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"operation\": \"enterFound\" " +
             "}");
     System.out.print("\n");
   }

@@ -61,7 +61,6 @@ public class BST {
         this.walk(filho, filho.direita);
 
         if (filho.direita != null) {
-          this.enterFound();
           this.found(filho.direita);
           this.delete(filho);
           this.exitFound();
@@ -76,7 +75,6 @@ public class BST {
         this.walk(filho, filho.esquerda);
 
         if (filho.esquerda != null) {
-          this.enterFound();
           this.found(filho.esquerda);
           this.delete(filho);
           this.exitFound();
@@ -91,7 +89,6 @@ public class BST {
 
       Node substituto = this.minimo(filho, filho.direita);
 
-      this.enterFound();
       this.found(substituto);
       this.exitFound();
       this.walk(substituto, null);
@@ -207,17 +204,6 @@ public class BST {
             "\"address\": \"" + (no != null ? System.identityHashCode(no) : null) + "\", " +
             "\"value\": " + (no != null ? no.chave : null) + ", " +
             "\"operation\": \"insert\" " +
-            "}");
-    System.out.print("\n");
-  }
-
-  private void enterFound() {
-    System.out.print("subject");
-    System.out.print("/");
-    System.out.print(
-        "{ " +
-            "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"operation\": \"enterFound\" " +
             "}");
     System.out.print("\n");
   }
