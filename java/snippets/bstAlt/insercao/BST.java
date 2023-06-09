@@ -47,11 +47,15 @@ public class BST {
       pai = filho;
 
       if (chave < filho.chave) {
-        this.walk(filho, filho.esquerda);
+        if (filho.esquerda == null || filho.esquerda.chave == chave) {
+          this.walk(filho, null);
+        }
 
         filho = filho.esquerda;
       } else if (chave > filho.chave) {
-        this.walk(filho, filho.direita);
+        if (filho.direita == null || filho.direita.chave == chave) {
+          this.walk(filho, null);
+        }
 
         filho = filho.direita;
       }
