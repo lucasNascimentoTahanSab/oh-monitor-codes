@@ -46,13 +46,13 @@ public class BST {
 
     while (no != null && no.chave != chave) {
       if (chave < no.chave) {
-        no = no.esquerda;
-
         this.walk(no, no.esquerda);
-      } else if (chave > no.chave) {
-        no = no.direita;
 
+        no = no.esquerda;
+      } else if (chave > no.chave) {
         this.walk(no, no.direita);
+
+        no = no.direita;
       }
     }
 
