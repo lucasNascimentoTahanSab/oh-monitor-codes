@@ -67,8 +67,6 @@ public class BST {
   }
 
   private void inserirAEsquerda(Node pai, Integer chave) {
-    this.walk(pai, null);
-
     pai.esquerda = new Node(chave);
     pai.esquerda.pai = pai;
 
@@ -77,8 +75,6 @@ public class BST {
   }
 
   private void inserirADireita(Node pai, Integer chave) {
-    this.walk(pai, null);
-
     pai.direita = new Node(chave);
     pai.direita.pai = pai;
 
