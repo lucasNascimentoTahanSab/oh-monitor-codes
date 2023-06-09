@@ -84,9 +84,9 @@ public class BST {
     System.out.print(
         "{ " +
             "\"structure\": \"" + System.identityHashCode(this) + "\", " +
-            "\"originAddress\": \"" + (origin != null ? System.identityHashCode(origin) : null) + "\", " +
+            "\"originAddress\": " + (origin != null ? "\"" + System.identityHashCode(origin) + "\"" : null) + ", " +
             "\"origin\": " + (origin != null ? origin.chave : null) + ", " +
-            "\"destinyAddress\": \"" + (destiny != null ? System.identityHashCode(destiny) : null) + "\", " +
+            "\"destinyAddress\": " + (destiny != null ? "\"" + System.identityHashCode(destiny) + "\"" : null) + ", " +
             "\"destiny\": " + (destiny != null ? destiny.chave : null) + ", " +
             "\"operation\": \"walk\" " +
             "}");
