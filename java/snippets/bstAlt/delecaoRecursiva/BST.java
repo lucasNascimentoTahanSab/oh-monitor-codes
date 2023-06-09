@@ -98,6 +98,7 @@ public class BST {
       this.found(substituto);
       this.walk(substituto, filho);
       this.update(filho, substituto.chave);
+      this.exitFound();
 
       filho.chave = substituto.chave;
       filho.direita = this.deletar(filho, filho.direita, filho.chave);
