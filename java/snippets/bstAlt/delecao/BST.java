@@ -103,8 +103,8 @@ public class BST {
 
   private void substituir(Node no, Node substituto) {
     this.walk(substituto, no);
-    this.walk(no, null);
     this.update(no, substituto.chave);
+    this.walk(substituto, null);
     this.delete(substituto);
 
     if (substituto.pai != no) {
